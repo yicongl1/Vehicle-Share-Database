@@ -17,34 +17,31 @@ USER = "your_user"
 PASSWORD = ""
 DATABASE = "your_database"
 
+def check_pseudo_availability(connection, username):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Utilisateur WHERE pseudo = %s", (username,))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            print("Le nom d'utilisateur est déjà pris.")
+            return False
+        else:
+            print("Le nom d'utilisateur est disponible.")
+            return True
+    except psycopg2.Error as e:
+        print("Erreur lors de la vérification de l'existence du nom d'utilisateur:", e)
+        return False
+
 try:
     conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD))
     print("Connexion réussie")
     
-    cur = conn.cursor()
+    pseudo_test = "Gagnos"
+    check_pseudo_availability(conn, pseudo_test)
+    pseudo_test = "NewPseudo"
+    check_pseudo_availability(conn, pseudo_test)
     
-    #chercher le login d'un utilisateur
-    cur.execute("SELECT * FROM dpt2;")
-                                                         
-    #lecture ligne et affichage
-    print("[N°] Nom (Population)")
-    raw = cur.fetchone()
-    while raw:
-        print ("[0%i] %s (%i)" % (raw[0], raw[1], raw[2]))
-        #print ("[",raw[0],"] ",raw[1]," (",raw[2],")")
-        raw = cur.fetchone()
-    #print("Visualisation de table réussie")
-    
-    #chercher les min-max population dans bdd
-    cur.execute("SELECT MIN(population), MAX(population) FROM dpt2;")    
-    raw = cur.fetchone()
-    print ("Département le plus peuplé : %i\nDépartement le moins peuplé : %i" % (raw[1], raw[0]))
-    
-    #insérer new dpts dans bdd
-    #sql = "INSERT INTO dpt2 VALUES ();"
-    #cur.execute(sql)
-    
-    conn.close()
     
 except Exception as error:
     print("Une exception s'est produite : ", error)
@@ -71,4 +68,29 @@ except Exception as error:
     print("Chargement du fichier csv réussi")"""
     
     """"print(cur.fetchall())"""
+    
+    """ cur = conn.cursor()
+    
+    #chercher le login d'un utilisateur
+    cur.execute("SELECT * FROM dpt2;")
+                                                         
+    #lecture ligne et affichage
+    print("[N°] Nom (Population)")
+    raw = cur.fetchone()
+    while raw:
+        print ("[0%i] %s (%i)" % (raw[0], raw[1], raw[2]))
+        #print ("[",raw[0],"] ",raw[1]," (",raw[2],")")
+        raw = cur.fetchone()
+    #print("Visualisation de table réussie")
+    
+    #chercher les min-max population dans bdd
+    cur.execute("SELECT MIN(population), MAX(population) FROM dpt2;")    
+    raw = cur.fetchone()
+    print ("Département le plus peuplé : %i\nDépartement le moins peuplé : %i" % (raw[1], raw[0]))
+    
+    #insérer new dpts dans bdd
+    #sql = "INSERT INTO dpt2 VALUES ();"
+    #cur.execute(sql)
+    
+    conn.close()"""
     
