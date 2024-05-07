@@ -1,7 +1,7 @@
 --DROP
 DROP VIEW IF EXISTS ContrainteOptionPossede, ContrainteVehiculeProprietaire, ContrainteContrat_locationEtat_des_lieux, ContrainteEntrepriseContrat_location, ContrainteLocataireContrat_location, ContrainteProprietaireContrat_location, ContrainteEntrepriseConducteur;
 
-DROP TABLE IF EXISTS Utilisateur, Possede, Peut_circuler, Est_disponible, Annonce, Contrat_assurance, Pays, Option, Periode, Commentaire, Facture, Etat_des_lieux, Contrat_location, Conducteur, Vehicule, Locataire, Proprietaire, Entreprise;
+DROP TABLE IF EXISTS Possede, Peut_circuler, Est_disponible, Annonce, Contrat_assurance, Pays, Option, Periode, Commentaire, Facture, Etat_des_lieux, Contrat_location, Vehicule, Conducteur,Entreprise, Locataire, Proprietaire, Utilisateur;
 
 
 --CREATE
