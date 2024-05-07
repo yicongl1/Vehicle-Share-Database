@@ -84,40 +84,43 @@ VALUES
     (9, 'Meta Platforms', 'Rousseau', 'Nicolas', 35, 'conducteur9.jpg', 'NicoRoadTrip', '0699000111', 'nicolas.rousseau@tesla.com', '5678901234', '2025-04-18'),
     (10, 'Tesla', 'Petit', 'Émilie', 30, 'conducteur10.jpg', 'EmilieExplorer', '0611223344', 'emilie.petit@facebook.com', '6789012345', '2024-12-05');
 
-
-INSERT INTO Contrat_location (id_contrat, option_franchise, seuil_kilometrage, debut, fin, proprietaire, locataire, entreprise)
+INSERT INTO Vehicule (immatriculation, categorie, marque, modele, couleur, carburant, annee_mise_circulation, kilometrage, niveau_carburant, description, proprietaire)
 VALUES 
-    (1, 'sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'berttt', NULL),
-    (2, 'franchise réduite', 1500, '2024-06-10', '2024-06-25', 'Leplusfort', 'gregou', NULL),
-    (3, 'zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'davidismoi', NULL),
-    (4, 'sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'marchariere', NULL),
-    (5, 'franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'clavierks', NULL),
-    (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'ordi3000', NULL),
-    (7, 'sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'Raphaz', NULL),
-    (8, 'franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'mickey', NULL),
-    (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'touche45', NULL),
-    (10, 'sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'fania', NULL);
+    ('AB-123-CD', 'SUV', 'Toyota', 'Rav4', 'Noir', 'Essence', 2019, 25000, 0.7, 'Véhicule familial spacieux et confortable', 'Gagnos'),
+    ('EF-456-GH', 'Compacte', 'Renault', 'Clio', 'Bleu', 'Diesel', 2020, 18000, 0.8, 'Voiture urbaine idéale pour les déplacements en ville', 'Leplusfort'),
+    ('IJ-789-KL', 'Berline', 'Peugeot', '308', 'Gris', 'Essence', 2018, 30000, 0.6, 'Conduite agréable et faible consommation de carburant', 'Xavier33'),
+    ('MN-012-OP', 'Berline', 'Volkswagen', 'Golf', 'Blanc', 'Essence', 2017, 35000, 0.5, 'Véhicule polyvalent, adapté à tous types de trajets', 'RobertDevos'),
+    ('QR-345-ST', 'SUV', 'Ford', 'Escape', 'Rouge', 'Essence', 2021, 15000, 0.9, 'SUV compact, idéal pour les aventures en famille', 'Chargeur2000'),
+    ('MN-456-ZW', 'Monospace', 'Renault', 'Espace', 'Bleu', 'Diesel', 2019, 20000, 0.6, 'Monospace spacieux et polyvalent pour les familles nombreuses', 'Avellll'),
+    ('MN-789-YZ', 'Monospace', 'Citroën', 'Grand C4 Spacetourer', 'Argent', 'Essence', 2019, 22000, 0.7, 'Monospace familial spacieux et polyvalent avec une conduite agréable', 'robot1234'),
+    ('BR-789-QR', 'Break', 'Volkswagen', 'Passat Variant', 'Blanc', 'Diesel', 2021, 12000, 0.9, 'Break élégant et confortable avec un grand espace de chargement', 'millemille'),
+    ('BR-456-WX', 'Break', 'Peugeot', '508 SW', 'Gris', 'Diesel', 2020, 18000, 0.8, 'Break élégant et confortable avec un design moderne', 'octogone8'),
+    ('UT-234-ST', 'Utilitaire', 'Ford', 'Transit', 'Blanc', 'Diesel', 2020, 25000, 0.5, 'Utilitaire fiable et robuste, idéal pour les professionnels', 'davvveee');
+
+INSERT INTO Contrat_location (id_contrat, option_franchise, seuil_kilometrage, debut, fin, proprietaire, vehicule, locataire, entreprise)
+VALUES 
+    (1, 'sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'AB-123-CD', 'berttt', NULL),
+    (2, 'franchise réduite', 1500, '2024-02-10', '2024-02-25', 'Leplusfort', 'EF-456-GH', 'gregou', NULL),
+    (3, 'zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
+    (4, 'sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
+    (5, 'franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'QR-345-ST', 'clavierks', NULL),
+    (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW' 'ordi3000', NULL),
+    (7, 'sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
+    (8, 'franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'BR-789-QR', 'mickey', NULL),
+    (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-789-WX', 'touche45', NULL),
+    (10, 'sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'UT-234-ST', 'fania', NULL);
+    (11, 'sans réduction', 1600, '2024-04-12', '2024-04-15', 'Gagnos', 'AB-123-CD', NULL, 'Tesla')
+    (12, 'zéro franchise', 1000, '2024-03-03', '2024-03-16', 'Avellll', 'MN-456-ZW', NULL, 'Google')
 
 INSERT INTO Etat_des_lieux (id_edl, contrat, type, photo, kilometrage, carburant, checklist)
 VALUES 
     (1, 1, 'debut', 'etatlieu1debut.jpg', 800, 0.8, 'Intérieur propre, légères rayures sur la carrosserie'),
     (2, 2, 'debut', 'etatlieu2debut.jpg', 1200, 1, 'Quelques éraflures sur le pare-chocs avant, réservoir plein'),
-    (3, 3, 'debut', 'etatlieu3debut.jpg', 900, 0.7, 'Propre intérieur, légère trace sur le côté gauche'),
-    (4, 4, 'debut', 'etatlieu4debut.jpg', 1500, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
-    (5, 5, 'debut', 'etatlieu5debut.jpg', 1400, 0.4, 'Intérieur propre, impact mineur sur le côté droit'),
-    (6, 6, 'debut', 'etatlieu6debut.jpg', 1100, 0.8, 'Propreté générale, léger impact sur le côté droit'),
-    (7, 7, 'debut', 'etatlieu7debut.jpg', 1500, 0.4, 'Rayure sur le côté gauche, intérieur propre'),
-    (8, 8, 'debut', 'etatlieu8debut.jpg', 1300, 1, 'Quelques traces sur le volant, réservoir plein'),
-    (9, 9, 'debut', 'etatlieu9debut.jpg', 1400, 0.9, 'Propre et bien entretenu'),
-    (10, 10, 'debut', 'etatlieu10debut.jpg', 1800, 0.3, 'Quelques petits impacts sur le pare-chocs avant, intérieur en bon état'),
-    (11,1,'fin','etatlieu1fin.jpg', 900, 0.8,'Rien à signaler'),
-    (12, 3, 'fin', 'etatlieu3fin.jpg', 1250, 0.5, 'Intérieur sale'),
-    (13, 4, 'fin', 'etatlieu4fin.jpg', 1400, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
-    (14, 5, 'fin', 'etatlieu5fin.jpg', 1600, 0.8, 'Légères rayures sur le rétroviseur droit'),
-    (15, 6, 'fin', 'etatlieu6fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé'),
-    (16, 7, 'fin', 'etatlieu7fin.jpg', 1600, 0.5, 'Rayures sur le côté gauche, Intérieur sale'),
-    (17, 8, 'fin', 'etatlieu8fin.jpg', 1250, 0.5, 'Intérieur sale'),
-    (18, 9, 'fin', 'etatlieu9fin.jpg', 1500, 0.9, 'Propre et bien entretenu');
+    (3, 11, 'debut', 'etatlieu11debut.jpg', 900, 0.7, 'Propre intérieur, légère trace sur le côté gauche'),
+    (4, 12, 'debut', 'etatlieu12debut.jpg', 1500, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
+    (5,2,'fin','etatlieu2fin.jpg', 900, 0.8,'Rien à signaler'),
+    (6,11, 'fin', 'etatlieu11fin.jpg', 1250, 0.5, 'Intérieur sale'),
+    (7, 12, 'fin', 'etatlieu12fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé');
 
 INSERT INTO Facture (id_facture, date, kilometrage, carburant, moyen_paiement, montant, contrat_location)
 VALUES 
@@ -145,20 +148,6 @@ VALUES
     (8, 3, FALSE, 'Petit souci technique avec le véhicule, mais rapidement résolu', 8),
     (9, 5, FALSE, 'Service clientèle très réactif, merci pour tout', 9),
     (10, 1, TRUE, 'Véhicule non conforme à la description, pneu crevé au bout de 100 km', 10);
-
-
-INSERT INTO Vehicule (immatriculation, categorie, marque, modele, couleur, carburant, annee_mise_circulation, kilometrage, niveau_carburant, description, proprietaire)
-VALUES 
-    ('AB-123-CD', 'SUV', 'Toyota', 'Rav4', 'Noir', 'Essence', 2019, 25000, 0.7, 'Véhicule familial spacieux et confortable', 'Gagnos'),
-    ('EF-456-GH', 'Compacte', 'Renault', 'Clio', 'Bleu', 'Diesel', 2020, 18000, 0.8, 'Voiture urbaine idéale pour les déplacements en ville', 'Leplusfort'),
-    ('IJ-789-KL', 'Berline', 'Peugeot', '308', 'Gris', 'Essence', 2018, 30000, 0.6, 'Conduite agréable et faible consommation de carburant', 'Xavier33'),
-    ('MN-012-OP', 'Berline', 'Volkswagen', 'Golf', 'Blanc', 'Essence', 2017, 35000, 0.5, 'Véhicule polyvalent, adapté à tous types de trajets', 'RobertDevos'),
-    ('QR-345-ST', 'SUV', 'Ford', 'Escape', 'Rouge', 'Essence', 2021, 15000, 0.9, 'SUV compact, idéal pour les aventures en famille', 'Chargeur2000'),
-    ('MN-456-ZW', 'Monospace', 'Renault', 'Espace', 'Bleu', 'Diesel', 2019, 20000, 0.6, 'Monospace spacieux et polyvalent pour les familles nombreuses', 'Avellll'),
-    ('MN-789-YZ', 'Monospace', 'Citroën', 'Grand C4 Spacetourer', 'Argent', 'Essence', 2019, 22000, 0.7, 'Monospace familial spacieux et polyvalent avec une conduite agréable', 'robot1234'),
-    ('BR-789-QR', 'Break', 'Volkswagen', 'Passat Variant', 'Blanc', 'Diesel', 2021, 12000, 0.9, 'Break élégant et confortable avec un grand espace de chargement', 'millemille'),
-    ('BR-456-WX', 'Break', 'Peugeot', '508 SW', 'Gris', 'Diesel', 2020, 18000, 0.8, 'Break élégant et confortable avec un design moderne', 'octogone8'),
-    ('UT-234-ST', 'Utilitaire', 'Ford', 'Transit', 'Blanc', 'Diesel', 2020, 25000, 0.5, 'Utilitaire fiable et robuste, idéal pour les professionnels', 'davvveee');
 
 
 INSERT INTO Pays (nom)
