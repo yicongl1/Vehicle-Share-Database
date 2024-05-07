@@ -65,7 +65,20 @@ CREATE TABLE Conducteur (
 	CHECK (validite > NOW())
 );
 
-
+CREATE TABLE Vehicule (
+	immatriculation VARCHAR(255) PRIMARY KEY,
+	categorie VARCHAR(255) NOT NULL,
+	marque VARCHAR(255) NOT NULL,
+	modele VARCHAR(255) NOT NULL,
+	couleur VARCHAR(255) NOT NULL,
+	carburant VARCHAR(255) NOT NULL,
+	annee_mise_circulation INT NOT NULL CHECK (annee_mise_circulation > 1900 AND annee_mise_circulation < 2025),
+	kilometrage INT CHECK (kilometrage > 0) NOT NULL,
+	niveau_carburant FLOAT CHECK (niveau_carburant >= 0 AND niveau_carburant <= 1) NOT NULL,
+	description TEXT NOT NULL,
+	proprietaire VARCHAR(255) NOT NULL,
+	FOREIGN KEY (proprietaire) REFERENCES Proprietaire(pseudo)
+);
 
 CREATE TABLE Contrat_location (
 	id_contrat INT PRIMARY KEY,
@@ -74,9 +87,11 @@ CREATE TABLE Contrat_location (
 	debut DATE NOT NULL,
 	fin DATE NOT NULL,
 	proprietaire VARCHAR(255) NOT NULL,
+	vehicule VARCHAR(255),
 	locataire VARCHAR(255),
 	entreprise VARCHAR(255),
 	FOREIGN KEY (proprietaire) REFERENCES Proprietaire(pseudo),
+	FOREIGN KEY (vehicule) REFERENCES Vehicule(immatriculation),
 	FOREIGN KEY (locataire) REFERENCES Locataire(pseudo),
 	FOREIGN KEY (entreprise) REFERENCES Entreprise(pseudo),
 	CHECK ((locataire IS NOT NULL AND entreprise IS NULL) OR (locataire IS NULL AND entreprise IS NOT NULL)),
@@ -122,21 +137,6 @@ CREATE TABLE Commentaire (
 	description VARCHAR(255) NOT NULL,
 	contrat_location INT NOT NULL,
 	FOREIGN KEY (contrat_location) REFERENCES Contrat_location(id_contrat)
-);
-
-CREATE TABLE Vehicule (
-	immatriculation VARCHAR(255) PRIMARY KEY,
-	categorie VARCHAR(255) NOT NULL,
-	marque VARCHAR(255) NOT NULL,
-	modele VARCHAR(255) NOT NULL,
-	couleur VARCHAR(255) NOT NULL,
-	carburant VARCHAR(255) NOT NULL,
-	annee_mise_circulation INT NOT NULL CHECK (annee_mise_circulation > 1900 AND annee_mise_circulation < 2025),
-	kilometrage INT CHECK (kilometrage > 0) NOT NULL,
-	niveau_carburant FLOAT CHECK (niveau_carburant >= 0 AND niveau_carburant <= 1) NOT NULL,
-	description TEXT NOT NULL,
-	proprietaire VARCHAR(255) NOT NULL,
-	FOREIGN KEY (proprietaire) REFERENCES Proprietaire(pseudo)
 );
 
 CREATE TABLE Pays (
