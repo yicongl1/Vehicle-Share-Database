@@ -153,7 +153,12 @@ VALUES
     ('EF-456-GH', 'Compacte', 'Renault', 'Clio', 'Bleu', 'Diesel', 2020, 18000, 0.8, 'Voiture urbaine idéale pour les déplacements en ville', 'Leplusfort'),
     ('IJ-789-KL', 'Berline', 'Peugeot', '308', 'Gris', 'Essence', 2018, 30000, 0.6, 'Conduite agréable et faible consommation de carburant', 'Xavier33'),
     ('MN-012-OP', 'Berline', 'Volkswagen', 'Golf', 'Blanc', 'Essence', 2017, 35000, 0.5, 'Véhicule polyvalent, adapté à tous types de trajets', 'RobertDevos'),
-    ('QR-345-ST', 'SUV', 'Ford', 'Escape', 'Rouge', 'Essence', 2021, 15000, 0.9, 'SUV compact, idéal pour les aventures en famille', 'Chargeur2000');
+    ('QR-345-ST', 'SUV', 'Ford', 'Escape', 'Rouge', 'Essence', 2021, 15000, 0.9, 'SUV compact, idéal pour les aventures en famille', 'Chargeur2000'),
+    ('MN-456-ZW', 'Monospace', 'Renault', 'Espace', 'Bleu', 'Diesel', 2019, 20000, 0.6, 'Monospace spacieux et polyvalent pour les familles nombreuses', 'Avellll'),
+    ('MN-789-YZ', 'Monospace', 'Citroën', 'Grand C4 Spacetourer', 'Argent', 'Essence', 2019, 22000, 0.7, 'Monospace familial spacieux et polyvalent avec une conduite agréable', 'robot1234'),
+    ('BR-789-QR', 'Break', 'Volkswagen', 'Passat Variant', 'Blanc', 'Diesel', 2021, 12000, 0.9, 'Break élégant et confortable avec un grand espace de chargement', 'millemille'),
+    ('BR-456-WX', 'Break', 'Peugeot', '508 SW', 'Gris', 'Diesel', 2020, 18000, 0.8, 'Break élégant et confortable avec un design moderne', 'octogone8'),
+    ('UT-234-ST', 'Utilitaire', 'Ford', 'Transit', 'Blanc', 'Diesel', 2020, 25000, 0.5, 'Utilitaire fiable et robuste, idéal pour les professionnels', 'davvveee');
 
 
 INSERT INTO Pays (nom)
