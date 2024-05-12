@@ -50,7 +50,7 @@ CREATE TABLE Entreprise (
 );
 
 CREATE TABLE Conducteur (
-	id_conducteur INT PRIMARY KEY,
+	id_conducteur SERIAL PRIMARY KEY,
 	entreprise VARCHAR(255) NOT NULL,
 	nom VARCHAR(255) NOT NULL,
 	prenom VARCHAR(255) NOT NULL,
@@ -81,7 +81,8 @@ CREATE TABLE Vehicule (
 );
 
 CREATE TABLE Contrat_location (
-	id_contrat INT PRIMARY KEY,
+	id_contrat SERIAL
+	 PRIMARY KEY,
 	option_franchise VARCHAR(255) CHECK (option_franchise = 'sans réduction' OR option_franchise = 'franchise réduite' OR option_franchise = 'zéro franchise') NOT NULL,
 	seuil_kilometrage INT NOT NULL,
 	debut DATE NOT NULL,
@@ -101,7 +102,7 @@ CREATE TABLE Contrat_location (
 
 
 CREATE TABLE Etat_des_lieux (
-	id_edl INT PRIMARY KEY,
+	id_edl SERIAL PRIMARY KEY,
 	contrat INT NOT NULL,
 	type VARCHAR(255) CHECK (type = 'debut' OR type = 'fin') NOT NULL,
 	photo VARCHAR(255) NOT NULL,
@@ -117,7 +118,7 @@ CREATE TABLE Etat_des_lieux (
 
 
 CREATE TABLE Facture (
-	id_facture INT PRIMARY KEY,
+	id_facture SERIAL PRIMARY KEY,
 	date DATE NOT NULL,
 	kilometrage INT NOT NULL,
 	carburant FLOAT NOT NULL,
@@ -131,7 +132,7 @@ CREATE TABLE Facture (
 );
 
 CREATE TABLE Commentaire (
-	id_commentaire INT PRIMARY KEY,
+	id_commentaire SERIAL PRIMARY KEY,
 	note INT CHECK (note >= 0 AND note <= 5) NOT NULL,
 	signaler BOOLEAN NOT NULL,
 	description VARCHAR(255) NOT NULL,
@@ -144,7 +145,7 @@ CREATE TABLE Pays (
 );
 
 CREATE TABLE Contrat_assurance (
-	id_assurance INT PRIMARY KEY,
+	id_assurance SERIAL PRIMARY KEY,
 	nom_assurance VARCHAR(255) NOT NULL,
 	type VARCHAR(255) NOT NULL,
 	vehicule VARCHAR(255) NOT NULL,
@@ -152,7 +153,7 @@ CREATE TABLE Contrat_assurance (
 );
 
 CREATE TABLE Annonce (
-	id_annonce INT PRIMARY KEY,
+	id_annonce SERIAL PRIMARY KEY,
 	activite BOOLEAN NOT NULL,
 	intitule VARCHAR(255) NOT NULL,
 	nombre_signalement INT CHECK (nombre_signalement >= 0) NOT NULL,
@@ -163,12 +164,12 @@ CREATE TABLE Annonce (
 );
 
 CREATE TABLE Option (
-	id_option INT PRIMARY KEY,
+	id_option SERIAL PRIMARY KEY,
 	intitule VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Periode (
-	id_periode INT PRIMARY KEY,
+	id_periode SERIAL PRIMARY KEY,
 	debut DATE NOT NULL,
 	fin DATE NOT NULL,
 	CHECK (fin > debut)
