@@ -101,8 +101,8 @@ INSERT INTO Contrat_location (option_franchise, seuil_kilometrage, debut, fin, p
 VALUES 
     ('sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'AB-123-CD', 'berttt', NULL),
     ('franchise réduite', 1500, '2024-02-10', '2024-02-25', 'Leplusfort', 'EF-456-GH', 'gregou', NULL),
-    ('zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
-    ('sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
+    ('zéro franchise', 1200, '2023-07-15', '2023-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
+    ('sans réduction', 2000, '2023-08-20', '2023-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
     ('franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'QR-345-ST', 'clavierks', NULL),
     ('zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW', 'ordi3000', NULL),
     ('sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
@@ -118,36 +118,31 @@ VALUES
     (2, 'debut', 'etatlieu2debut.jpg', 1200, 1, 'Quelques éraflures sur le pare-chocs avant, réservoir plein'),
     (11, 'debut', 'etatlieu11debut.jpg', 900, 0.7, 'Propre intérieur, légère trace sur le côté gauche'),
     (12, 'debut', 'etatlieu12debut.jpg', 1500, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
-    (2,'fin','etatlieu2fin.jpg', 900, 0.8,'Rien à signaler'),
+    (2, 'fin', 'etatlieu2fin.jpg', 900, 0.8, 'Rien à signaler'),
     (11, 'fin', 'etatlieu11fin.jpg', 1250, 0.5, 'Intérieur sale'),
-    (12, 'fin', 'etatlieu12fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé');
+    (12, 'fin', 'etatlieu12fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé'),
+    (3, 'debut', 'etatlieu3debut.png', 900, 0.9, 'Rien à signaler'),
+    (3, 'fin', 'etatlieu3fin.png', 800, 0.8, 'Rien à signaler'),
+    (4, 'debut', 'etatlieu4debut.png', 1900, 0.7, 'Quelques rayures sur le pare-choc'),
+    (4, 'fin', 'etatlieu4fin.png', 1800, 0.7, 'Rétroviseur arraché');
+    
 
 INSERT INTO Facture (date, kilometrage, carburant, moyen_paiement, montant, contrat_location)
 VALUES 
-    ('2024-05-16', 700, 0.6, 'carte de crédit', 350.50, 1),
-    ('2024-06-26', 900, 0.5, 'espèces', 420.75, 2),
+    ('2024-02-25', 900, 0.5, 'espèces', 420.75, 2),
     ('2024-08-02', 400, 0.8, 'chèque', 280.00, 3),
-    ('2024-09-06', 1100, 0.7, 'virement bancaire', 520.25, 4),
-    ('2024-10-11', 1300, 0.4, 'carte de crédit', 630.90, 5),
-    ('2024-11-16', 1000, 0.7, 'espèces', 480.75, 6),
-    ('2025-01-06', 1400, 0.3, 'chèque', 380.00, 7),
-    ('2025-01-26', 1200, 0.6, 'virement bancaire', 550.25, 8),
-    ('2025-02-21', 1500, 0.9, 'carte de crédit', 680.90, 9),
-    ('2025-03-16', 1900, 0.2, 'espèces', 720.75, 10);
+    ('2023-09-06', 1100, 0.7, 'virement bancaire', 520.25, 4),
+    ('2024-04-16', 1300, 0.4, 'carte de crédit', 630.90, 11),
+    ('2024-03-17', 1000, 0.7, 'espèces', 480.75, 12);
 
 
 INSERT INTO Commentaire (note, signaler, description, contrat_location)
 VALUES 
-    (4, FALSE, 'Très bon véhicule, confortable et économique en carburant', 1),
     (5, FALSE, 'Service impeccable, véhicule en excellent état', 2),
     (3, FALSE, 'Véhicule moyen, problème de démarrage à froid', 3),
     (4, FALSE, 'Conducteur très professionnel, bonnes explications', 4),
-    (2, TRUE, 'Véhicule sale à la remise des clés, odeur désagréable', 5),
-    (5, FALSE, 'Super expérience, je recommande vivement', 6),
-    (4, FALSE, 'Contrat clair, aucun problème lors de la restitution du véhicule', 7),
-    (3, FALSE, 'Petit souci technique avec le véhicule, mais rapidement résolu', 8),
-    (5, FALSE, 'Service clientèle très réactif, merci pour tout', 9),
-    (1, TRUE, 'Véhicule non conforme à la description, pneu crevé au bout de 100 km', 10);
+    (2, TRUE, 'Véhicule sale à la remise des clés, odeur désagréable', 11),
+    (5, FALSE, 'Super expérience, je recommande vivement', 12);
 
 
 INSERT INTO Pays (nom)
@@ -165,16 +160,26 @@ VALUES
     ('Assurance Zéro Tracas', 'Responsabilité Civile', 'EF-456-GH'),
     ('Assurance Sérénité', 'Tous Risques', 'IJ-789-KL'),
     ('Assurance Tranquillité', 'Responsabilité Civile', 'MN-012-OP'),
-    ('Assurance Protection Totale', 'Tous Risques', 'QR-345-ST');
+    ('Assurance Protection Totale', 'Tous Risques', 'QR-345-ST'),
+    ('Assurance Auto Plus', 'Tous Risques', 'MN-456-ZW'),
+    ('Assurance Zéro Tracas', 'Responsabilité Civile', 'MN-789-YZ'),
+    ('Assurance Sérénité', 'Tous Risques', 'BR-789-QR'),
+    ('Assurance Tranquillité', 'Responsabilité Civile', 'BR-456-WX'),
+    ('Assurance Protection Totale', 'Tous Risques', 'UT-234-ST');
 
 
 INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule)
 VALUES 
-    (TRUE, 'ma voiture', 0, 4.2, 'AB-123-CD'),
-    (FALSE, 'Location pas cher', 0, 4.8, 'EF-456-GH'),
-    (TRUE, 'Mon bebe mon bolide', 0, 4.5, 'IJ-789-KL'),
-    (FALSE, 'en promo', 0, 4.7, 'MN-012-OP'),
-    (TRUE, 'la plus grande voiture de lannée', 0, 4.4, 'QR-345-ST');
+    (TRUE, 'ma voiture', 1, 2, 'AB-123-CD'),
+    (FALSE, 'Location pas cher', 0, 5, 'EF-456-GH'),
+    (TRUE, 'Mon bebe mon bolide', 0, 3, 'IJ-789-KL'),
+    (FALSE, 'en promo', 0, 4, 'MN-012-OP'),
+    (TRUE, 'la plus grande voiture de lannée', 0, 0, 'QR-345-ST'),
+    (TRUE, 'voiture 4 places', 1, 5, 'MN-456-ZW'),
+    (FALSE, 'Grand véhicule', 0, 0, 'MN-789-YZ'),
+    (TRUE, 'Décapotable 4 places', 0, 0, 'BR-789-QR'),
+    (FALSE, 'SUV', 0, 0, 'BR-456-WX'),
+    (TRUE, 'Bus', 0, 0, 'UT-234-ST');
 
 
 INSERT INTO Option (intitule)
