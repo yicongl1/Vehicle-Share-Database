@@ -16,7 +16,7 @@ JOIN Periode P ON E.periode = P.id_periode
 WHERE (A.activite = TRUE) AND (P.debut > NOW());
 
 --Moyenne d’âge : 
-SELECT AVG(annee_mise_circulation) AS moyenne_age
+SELECT ROUND(AVG(annee_mise_circulation)) AS moyenne_age
 FROM Vehicule;
 
 --Kilométrage moyen
