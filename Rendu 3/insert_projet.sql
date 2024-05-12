@@ -107,10 +107,10 @@ VALUES
     (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW', 'ordi3000', NULL),
     (7, 'sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
     (8, 'franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'BR-789-QR', 'mickey', NULL),
-    (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-789-WX', 'touche45', NULL),
-    (10, 'sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'UT-234-ST', 'fania', NULL);
-    (11, 'sans réduction', 1600, '2024-04-12', '2024-04-15', 'Gagnos', 'AB-123-CD', NULL, 'Tesla')
-    (12, 'zéro franchise', 1000, '2024-03-03', '2024-03-16', 'Avellll', 'MN-456-ZW', NULL, 'Google')
+    (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-456-WX', 'touche45', NULL),
+    (10, 'sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'UT-234-ST', 'fania', NULL),
+    (11, 'sans réduction', 1600, '2024-04-12', '2024-04-15', 'Gagnos', 'AB-123-CD', NULL, 'Tesla'),
+    (12, 'zéro franchise', 1000, '2024-03-03', '2024-03-16', 'Avellll', 'MN-456-ZW', NULL, 'Google');
 
 INSERT INTO Etat_des_lieux (id_edl, contrat, type, photo, kilometrage, carburant, checklist)
 VALUES 
