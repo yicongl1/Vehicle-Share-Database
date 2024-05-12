@@ -71,18 +71,18 @@ VALUES
     ('Tesla', 'tesla.jpg', '0556789012', 'contact@tesla.com', 'Tesla, Inc.', '3500 Deer Creek Road', 'Palo Alto', 94304);
 
 
-INSERT INTO Conducteur (id_conducteur, entreprise, nom, prenom, age, photo, pseudo, telephone, email, permis, validite)
+INSERT INTO Conducteur (entreprise, nom, prenom, age, photo, pseudo, telephone, email, permis, validite)
 VALUES 
-    (1, 'Apple', 'Martin', 'Alexandre', 34, 'conducteur1.jpg', 'AlexTheDriver', '0611223344', 'alex.martin@amazon.com', '1234567890', '2025-05-30'),
-    (2, 'Amazon', 'Dubois', 'Marie', 27, 'conducteur2.jpg', 'MarieOnTheRoad', '0622334455', 'marie.dubois@gmail.com', '0987654321', '2024-11-15'),
-    (3, 'Google', 'Durand', 'Luc', 40, 'conducteur3.jpg', 'LucDriveMaster', '0633445566', 'luc.durand@yahoo.com', '9876543210', '2025-08-22'),
-    (4, 'Meta Platforms', 'Leroy', 'Sophie', 31, 'conducteur4.jpg', 'SophieRider', '0644556677', 'sophie.leroy@facebook.com', '0123456789', '2026-03-10'),
-    (5, 'Tesla', 'Moreau', 'Thomas', 29, 'conducteur5.jpg', 'ThomasExplorer', '0655667788', 'thomas.moreau@tesla.com', '5432109876', '2025-09-17'),
-    (6, 'Apple', 'Lefevre', 'Alice', 36, 'conducteur6.jpg', 'AliTraveler', '0666777888', 'alice.lefevre@apple.com', '2345678901', '2025-07-22'),
-    (7, 'Amazon', 'Garcia', 'Pierre', 33, 'conducteur7.jpg', 'PierreVoyage', '0677888999', 'pierre.garcia@google.com', '3456789012', '2026-01-12'),
-    (8, 'Google', 'Fournier', 'Camille', 28, 'conducteur8.jpg', 'CamilleAdventures', '0688999000', 'camille.fournier@amazon.com', '4567890123', '2025-10-29'),
-    (9, 'Meta Platforms', 'Rousseau', 'Nicolas', 35, 'conducteur9.jpg', 'NicoRoadTrip', '0699000111', 'nicolas.rousseau@tesla.com', '5678901234', '2025-04-18'),
-    (10, 'Tesla', 'Petit', 'Émilie', 30, 'conducteur10.jpg', 'EmilieExplorer', '0611223344', 'emilie.petit@facebook.com', '6789012345', '2024-12-05');
+    ('Apple', 'Martin', 'Alexandre', 34, 'conducteur1.jpg', 'AlexTheDriver', '0611223344', 'alex.martin@amazon.com', '1234567890', '2025-05-30'),
+    ('Amazon', 'Dubois', 'Marie', 27, 'conducteur2.jpg', 'MarieOnTheRoad', '0622334455', 'marie.dubois@gmail.com', '0987654321', '2024-11-15'),
+    ('Google', 'Durand', 'Luc', 40, 'conducteur3.jpg', 'LucDriveMaster', '0633445566', 'luc.durand@yahoo.com', '9876543210', '2025-08-22'),
+    ('Meta Platforms', 'Leroy', 'Sophie', 31, 'conducteur4.jpg', 'SophieRider', '0644556677', 'sophie.leroy@facebook.com', '0123456789', '2026-03-10'),
+    ('Tesla', 'Moreau', 'Thomas', 29, 'conducteur5.jpg', 'ThomasExplorer', '0655667788', 'thomas.moreau@tesla.com', '5432109876', '2025-09-17'),
+    ('Apple', 'Lefevre', 'Alice', 36, 'conducteur6.jpg', 'AliTraveler', '0666777888', 'alice.lefevre@apple.com', '2345678901', '2025-07-22'),
+    ('Amazon', 'Garcia', 'Pierre', 33, 'conducteur7.jpg', 'PierreVoyage', '0677888999', 'pierre.garcia@google.com', '3456789012', '2026-01-12'),
+    ('Google', 'Fournier', 'Camille', 28, 'conducteur8.jpg', 'CamilleAdventures', '0688999000', 'camille.fournier@amazon.com', '4567890123', '2025-10-29'),
+    ('Meta Platforms', 'Rousseau', 'Nicolas', 35, 'conducteur9.jpg', 'NicoRoadTrip', '0699000111', 'nicolas.rousseau@tesla.com', '5678901234', '2025-04-18'),
+    ('Tesla', 'Petit', 'Émilie', 30, 'conducteur10.jpg', 'EmilieExplorer', '0611223344', 'emilie.petit@facebook.com', '6789012345', '2024-12-05');
 
 INSERT INTO Vehicule (immatriculation, categorie, marque, modele, couleur, carburant, annee_mise_circulation, kilometrage, niveau_carburant, description, proprietaire)
 VALUES 
@@ -97,57 +97,57 @@ VALUES
     ('BR-456-WX', 'Break', 'Peugeot', '508 SW', 'Gris', 'Diesel', 2020, 18000, 0.8, 'Break élégant et confortable avec un design moderne', 'octogone8'),
     ('UT-234-ST', 'Utilitaire', 'Ford', 'Transit', 'Blanc', 'Diesel', 2020, 25000, 0.5, 'Utilitaire fiable et robuste, idéal pour les professionnels', 'davvveee');
 
-INSERT INTO Contrat_location (id_contrat, option_franchise, seuil_kilometrage, debut, fin, proprietaire, vehicule, locataire, entreprise)
+INSERT INTO Contrat_location (option_franchise, seuil_kilometrage, debut, fin, proprietaire, vehicule, locataire, entreprise)
 VALUES 
-    (1, 'sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'AB-123-CD', 'berttt', NULL),
-    (2, 'franchise réduite', 1500, '2024-02-10', '2024-02-25', 'Leplusfort', 'EF-456-GH', 'gregou', NULL),
-    (3, 'zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
-    (4, 'sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
-    (5, 'franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'QR-345-ST', 'clavierks', NULL),
-    (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW', 'ordi3000', NULL),
-    (7, 'sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
-    (8, 'franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'BR-789-QR', 'mickey', NULL),
-    (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-456-WX', 'touche45', NULL),
-    (10, 'sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'UT-234-ST', 'fania', NULL),
-    (11, 'sans réduction', 1600, '2024-04-12', '2024-04-15', 'Gagnos', 'AB-123-CD', NULL, 'Tesla'),
-    (12, 'zéro franchise', 1000, '2024-03-03', '2024-03-16', 'Avellll', 'MN-456-ZW', NULL, 'Google');
+    ('sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'AB-123-CD', 'berttt', NULL),
+    ('franchise réduite', 1500, '2024-02-10', '2024-02-25', 'Leplusfort', 'EF-456-GH', 'gregou', NULL),
+    ('zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
+    ('sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
+    ('franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'QR-345-ST', 'clavierks', NULL),
+    ('zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW', 'ordi3000', NULL),
+    ('sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
+    ('franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'BR-789-QR', 'mickey', NULL),
+    ('zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-456-WX', 'touche45', NULL),
+    ('sans réduction', 1900, '2025-03-01', '2025-03-15', 'davvveee', 'UT-234-ST', 'fania', NULL),
+    ('sans réduction', 1600, '2024-04-12', '2024-04-15', 'Gagnos', 'AB-123-CD', NULL, 'Tesla'),
+    ('zéro franchise', 1000, '2024-03-03', '2024-03-16', 'Avellll', 'MN-456-ZW', NULL, 'Google');
 
-INSERT INTO Etat_des_lieux (id_edl, contrat, type, photo, kilometrage, carburant, checklist)
+INSERT INTO Etat_des_lieux (contrat, type, photo, kilometrage, carburant, checklist)
 VALUES 
-    (1, 1, 'debut', 'etatlieu1debut.jpg', 800, 0.8, 'Intérieur propre, légères rayures sur la carrosserie'),
-    (2, 2, 'debut', 'etatlieu2debut.jpg', 1200, 1, 'Quelques éraflures sur le pare-chocs avant, réservoir plein'),
-    (3, 11, 'debut', 'etatlieu11debut.jpg', 900, 0.7, 'Propre intérieur, légère trace sur le côté gauche'),
-    (4, 12, 'debut', 'etatlieu12debut.jpg', 1500, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
-    (5,2,'fin','etatlieu2fin.jpg', 900, 0.8,'Rien à signaler'),
-    (6,11, 'fin', 'etatlieu11fin.jpg', 1250, 0.5, 'Intérieur sale'),
-    (7, 12, 'fin', 'etatlieu12fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé');
+    (1, 'debut', 'etatlieu1debut.jpg', 800, 0.8, 'Intérieur propre, légères rayures sur la carrosserie'),
+    (2, 'debut', 'etatlieu2debut.jpg', 1200, 1, 'Quelques éraflures sur le pare-chocs avant, réservoir plein'),
+    (11, 'debut', 'etatlieu11debut.jpg', 900, 0.7, 'Propre intérieur, légère trace sur le côté gauche'),
+    (12, 'debut', 'etatlieu12debut.jpg', 1500, 0.5, 'Rayures mineures sur le capot, carburant à moitié plein'),
+    (2,'fin','etatlieu2fin.jpg', 900, 0.8,'Rien à signaler'),
+    (11, 'fin', 'etatlieu11fin.jpg', 1250, 0.5, 'Intérieur sale'),
+    (12, 'fin', 'etatlieu12fin.jpg', 1250, 0.8, 'Impact sévère sur le côté droit, pare-brise brisé');
 
-INSERT INTO Facture (id_facture, date, kilometrage, carburant, moyen_paiement, montant, contrat_location)
+INSERT INTO Facture (date, kilometrage, carburant, moyen_paiement, montant, contrat_location)
 VALUES 
-    (1, '2024-05-16', 700, 0.6, 'carte de crédit', 350.50, 1),
-    (2, '2024-06-26', 900, 0.5, 'espèces', 420.75, 2),
-    (3, '2024-08-02', 400, 0.8, 'chèque', 280.00, 3),
-    (4, '2024-09-06', 1100, 0.7, 'virement bancaire', 520.25, 4),
-    (5, '2024-10-11', 1300, 0.4, 'carte de crédit', 630.90, 5),
-    (6, '2024-11-16', 1000, 0.7, 'espèces', 480.75, 6),
-    (7, '2025-01-06', 1400, 0.3, 'chèque', 380.00, 7),
-    (8, '2025-01-26', 1200, 0.6, 'virement bancaire', 550.25, 8),
-    (9, '2025-02-21', 1500, 0.9, 'carte de crédit', 680.90, 9),
-    (10, '2025-03-16', 1900, 0.2, 'espèces', 720.75, 10);
+    ('2024-05-16', 700, 0.6, 'carte de crédit', 350.50, 1),
+    ('2024-06-26', 900, 0.5, 'espèces', 420.75, 2),
+    ('2024-08-02', 400, 0.8, 'chèque', 280.00, 3),
+    ('2024-09-06', 1100, 0.7, 'virement bancaire', 520.25, 4),
+    ('2024-10-11', 1300, 0.4, 'carte de crédit', 630.90, 5),
+    ('2024-11-16', 1000, 0.7, 'espèces', 480.75, 6),
+    ('2025-01-06', 1400, 0.3, 'chèque', 380.00, 7),
+    ('2025-01-26', 1200, 0.6, 'virement bancaire', 550.25, 8),
+    ('2025-02-21', 1500, 0.9, 'carte de crédit', 680.90, 9),
+    ('2025-03-16', 1900, 0.2, 'espèces', 720.75, 10);
 
 
-INSERT INTO Commentaire (id_commentaire, note, signaler, description, contrat_location)
+INSERT INTO Commentaire (note, signaler, description, contrat_location)
 VALUES 
-    (1, 4, FALSE, 'Très bon véhicule, confortable et économique en carburant', 1),
-    (2, 5, FALSE, 'Service impeccable, véhicule en excellent état', 2),
-    (3, 3, FALSE, 'Véhicule moyen, problème de démarrage à froid', 3),
-    (4, 4, FALSE, 'Conducteur très professionnel, bonnes explications', 4),
-    (5, 2, TRUE, 'Véhicule sale à la remise des clés, odeur désagréable', 5),
-    (6, 5, FALSE, 'Super expérience, je recommande vivement', 6),
-    (7, 4, FALSE, 'Contrat clair, aucun problème lors de la restitution du véhicule', 7),
-    (8, 3, FALSE, 'Petit souci technique avec le véhicule, mais rapidement résolu', 8),
-    (9, 5, FALSE, 'Service clientèle très réactif, merci pour tout', 9),
-    (10, 1, TRUE, 'Véhicule non conforme à la description, pneu crevé au bout de 100 km', 10);
+    (4, FALSE, 'Très bon véhicule, confortable et économique en carburant', 1),
+    (5, FALSE, 'Service impeccable, véhicule en excellent état', 2),
+    (3, FALSE, 'Véhicule moyen, problème de démarrage à froid', 3),
+    (4, FALSE, 'Conducteur très professionnel, bonnes explications', 4),
+    (2, TRUE, 'Véhicule sale à la remise des clés, odeur désagréable', 5),
+    (5, FALSE, 'Super expérience, je recommande vivement', 6),
+    (4, FALSE, 'Contrat clair, aucun problème lors de la restitution du véhicule', 7),
+    (3, FALSE, 'Petit souci technique avec le véhicule, mais rapidement résolu', 8),
+    (5, FALSE, 'Service clientèle très réactif, merci pour tout', 9),
+    (1, TRUE, 'Véhicule non conforme à la description, pneu crevé au bout de 100 km', 10);
 
 
 INSERT INTO Pays (nom)
@@ -159,42 +159,42 @@ VALUES
     ('Royaume-Uni');
 
 
-INSERT INTO Contrat_assurance (id_assurance, nom_assurance, type, vehicule)
+INSERT INTO Contrat_assurance (nom_assurance, type, vehicule)
 VALUES 
-    (1, 'Assurance Auto Plus', 'Tous Risques', 'AB-123-CD'),
-    (2, 'Assurance Zéro Tracas', 'Responsabilité Civile', 'EF-456-GH'),
-    (3, 'Assurance Sérénité', 'Tous Risques', 'IJ-789-KL'),
-    (4, 'Assurance Tranquillité', 'Responsabilité Civile', 'MN-012-OP'),
-    (5, 'Assurance Protection Totale', 'Tous Risques', 'QR-345-ST');
+    ('Assurance Auto Plus', 'Tous Risques', 'AB-123-CD'),
+    ('Assurance Zéro Tracas', 'Responsabilité Civile', 'EF-456-GH'),
+    ('Assurance Sérénité', 'Tous Risques', 'IJ-789-KL'),
+    ('Assurance Tranquillité', 'Responsabilité Civile', 'MN-012-OP'),
+    ('Assurance Protection Totale', 'Tous Risques', 'QR-345-ST');
 
 
-INSERT INTO Annonce (id_annonce, activite, intitule, nombre_signalement, note, vehicule)
+INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule)
 VALUES 
-    (1, TRUE, 'ma voiture', 0, 4.2, 'AB-123-CD'),
-    (2, FALSE, 'Location pas cher', 0, 4.8, 'EF-456-GH'),
-    (3, TRUE, 'Mon bebe mon bolide', 0, 4.5, 'IJ-789-KL'),
-    (4, FALSE, 'en promo', 0, 4.7, 'MN-012-OP'),
-    (5, TRUE, 'la plus grande voiture de lannée', 0, 4.4, 'QR-345-ST');
+    (TRUE, 'ma voiture', 0, 4.2, 'AB-123-CD'),
+    (FALSE, 'Location pas cher', 0, 4.8, 'EF-456-GH'),
+    (TRUE, 'Mon bebe mon bolide', 0, 4.5, 'IJ-789-KL'),
+    (FALSE, 'en promo', 0, 4.7, 'MN-012-OP'),
+    (TRUE, 'la plus grande voiture de lannée', 0, 4.4, 'QR-345-ST');
 
 
-INSERT INTO Option (id_option, intitule)
+INSERT INTO Option (intitule)
 VALUES 
-    (1, 'GPS'),
-    (2, 'Siège enfant'),
-    (3, 'Climatisation'),
-    (4, 'Assistance au stationnement'),
-    (5, 'Toit panoramique'),
-    (6, 'Système audio premium'),
-    (7, 'Sièges chauffants'),
-    (8, 'Détection des angles morts');
+    ('GPS'),
+    ('Siège enfant'),
+    ('Climatisation'),
+    ('Assistance au stationnement'),
+    ('Toit panoramique'),
+    ('Système audio premium'),
+    ('Sièges chauffants'),
+    ('Détection des angles morts');
 
-INSERT INTO Periode (id_periode, debut, fin)
+INSERT INTO Periode (debut, fin)
 VALUES 
-    (1, '2024-05-01', '2024-05-15'),
-    (2, '2024-06-01', '2024-06-15'),
-    (3, '2024-07-01', '2024-07-15'),
-    (4, '2024-08-01', '2024-08-15'),
-    (5, '2024-09-01', '2024-09-15');
+    ('2024-05-01', '2024-05-15'),
+    ('2024-06-01', '2024-06-15'),
+    ('2024-07-01', '2024-07-15'),
+    ('2024-08-01', '2024-08-15'),
+    ('2024-09-01', '2024-09-15');
 
 INSERT INTO Est_disponible (vehicule, periode)
 VALUES 
