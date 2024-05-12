@@ -51,6 +51,95 @@ def login(connection, username, password):
         print("Échec de la connexion:", e)
         return None
 
+#inserer nouveau proprietaire
+def insert_new_proprietaire_with_input(connection, pseudo):
+    try:
+        cursor = connection.cursor()
+        photo = input("Photo: ")
+        telephone = input("Téléphone: ")
+        email = input("Email: ")
+        nom = input("Nom: ")
+        prenom = input("Prénom: ")
+        age = int(input(" ge: "))
+        insert_query = "INSERT INTO Proprietaire (pseudo, photo, telephone, email, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s);"
+        cursor.execute(insert_query, (pseudo, photo, telephone, email, nom, prenom, age))
+        connection.commit()
+        print("Nouveau propriétaire inséré avec succès !")
+    except psycopg2.Error as error:
+        print("Erreur lors de l'insertion du nouveau propriétaire:", error)
+
+#inserer nouveau locataire
+def insert_new_locataire_with_input(connection, pseudo):
+    try:
+        cursor = connection.cursor()
+        photo = input("Photo: ")
+        telephone = input("Téléphone: ")
+        email = input("Email: ")
+        permis = input("Permis: ")
+        validite = input("Validité: ")
+        nom = input("Nom: ")
+        prenom = input("Prénom: ")
+        age = int(input(" ge: "))
+        insert_query = "INSERT INTO Locataire (pseudo, photo, telephone, email, permis, validite, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
+        cursor.execute(insert_query, (pseudo, photo, telephone, email, permis, validite, nom, prenom, age))
+        connection.commit()
+        print("Nouveau locataire inséré avec succès !")
+    except psycopg2.Error as error:
+        print("Erreur lors de l'insertion du nouveau locataire:", error)
+
+#inserer nouvelle entreprise
+def insert_new_entreprise_with_input(connection, pseudo):
+   try:
+       cursor = connection.cursor()
+       photo = input("Photo: ")
+       telephone = input("Téléphone: ")
+       email = input("Email: ")
+       nom = input("Nom: ")
+       adresse = input("Adresse: ")
+       ville = input("Ville: ")
+       code_postal = input("Code postal: ")
+       insert_query = "INSERT INTO Entreprise (pseudo, photo, telephone, email, nom, adresse, ville, code_postal) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"
+       cursor.execute(insert_query, (pseudo, photo, telephone, email, nom, adresse, ville, code_postal))
+       connection.commit()
+       print("Nouvelle entreprise insérée avec succès !")
+   except psycopg2.Error as error:
+       print("Erreur lors de l'insertion de la nouvelle entreprise:", error)
+
+#creation d’utilisateur
+def create_user(connection):
+    pseudo = input("Veuillez entrer un nom d'utilisateur : ")
+    while not check_pseudo_availability(connection, pseudo):
+        pseudo = input("Veuillez entrer un autre nom d'utilisateur : ")
+    
+    password = input("Veuillez entrer un mot de passe : ")
+    confirm_password = input("Veuillez confirmer votre mot de passe : ")
+    while password != confirm_password:
+        print("Les mots de passe ne correspondent pas.")
+        password = input("Veuillez entrer un mot de passe : ")
+        confirm_password = input("Veuillez confirmer votre mot de passe : ")
+    
+    user_type = input("Veuillez entrer le type d'utilisateur (proprietaire/locataire/entreprise) : ")
+    while user_type not in ["proprietaire", "locataire", "entreprise"]:
+        print("Type d'utilisateur invalide.")
+        user_type = input("Veuillez entrer le type d'utilisateur (proprietaire/locataire/entreprise) : ")
+    
+    try:
+        cursor = connection.cursor()
+        cursor.execute("INSERT INTO Utilisateur (pseudo, mot_de_passe, type) VALUES (%s, %s, %s)", (pseudo, password, user_type))
+        connection.commit()
+        print("Utilisateur créé avec succès.")
+        cursor.close()
+
+        # Appeler la fonction correspondante en fonction du type d'utilisateur
+        if user_type == "proprietaire":
+            insert_new_proprietaire_with_input(connection, pseudo)
+        elif user_type == "locataire":
+            insert_new_locataire_with_input(connection, pseudo)
+        elif user_type == "entreprise":
+            insert_new_entreprise_with_input(connection, pseudo)
+    except psycopg2.Error as e:
+        print("Erreur lors de la création de l'utilisateur :", e)
+
 #inserer nouvelle annonce
 def insert_new_announcement_with_input(connection):
     try:
@@ -67,7 +156,6 @@ def insert_new_announcement_with_input(connection):
     except psycopg2.Error as error:
         print("Erreur lors de l'insertion de la nouvelle annonce:", error)
 
-
 try:
     conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD))
     print("Connexion à la BDD réussie")
@@ -78,7 +166,7 @@ try:
         print("choix invalide, veuillez recommencer")
         choix = str(input("Voulez vous faire une rehcerche par critères (oui/non)\n"))"""
     
-    #test existence pseudo
+    """#test existence pseudo
     pseudo_test = "Gagnos"
     check_pseudo_availability(conn, pseudo_test)
     pseudo_test = "NewPseudo"
@@ -97,7 +185,11 @@ try:
     if (type_test == "proprietaire"):
         insert_new_announcement_with_input(conn)
     else:
-        print("Vous n'êtes pas proprietaire, vous ne pouvez pas ajouter d'annonce !")
+        print("Vous n'êtes pas proprietaire, vous ne pouvez pas ajouter d'annonce !")"""
+        
+    #test ajouter un utilisateur
+    print("Vous allez vous inscrire, veuillez renseigner les informations") 
+    create_user(conn)
     
     
 except Exception as error:
