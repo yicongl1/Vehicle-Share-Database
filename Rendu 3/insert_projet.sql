@@ -104,7 +104,7 @@ VALUES
     (3, 'zéro franchise', 1200, '2024-07-15', '2024-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL),
     (4, 'sans réduction', 2000, '2024-08-20', '2024-09-05', 'RobertDevos', 'MN-012-OP', 'marchariere', NULL),
     (5, 'franchise réduite', 1800, '2024-09-25', '2024-10-10', 'Chargeur2000', 'QR-345-ST', 'clavierks', NULL),
-    (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW' 'ordi3000', NULL),
+    (6, 'zéro franchise', 1300, '2024-11-01', '2024-11-15', 'Avellll', 'MN-456-ZW', 'ordi3000', NULL),
     (7, 'sans réduction', 1600, '2024-12-20', '2025-01-05', 'robot1234', 'MN-789-YZ', 'Raphaz', NULL),
     (8, 'franchise réduite', 1400, '2025-01-10', '2025-01-25', 'millemille', 'BR-789-QR', 'mickey', NULL),
     (9, 'zéro franchise', 1700, '2025-02-05', '2025-02-20', 'octogone8', 'BR-789-WX', 'touche45', NULL),
