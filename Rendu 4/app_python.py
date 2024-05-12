@@ -17,6 +17,7 @@ USER = "your_user"
 PASSWORD = ""
 DATABASE = "your_database"
 
+#pour la creation de user, il faut check si le pseudo est pris
 def check_pseudo_availability(connection, username):
     try:
         cursor = connection.cursor()
@@ -33,6 +34,7 @@ def check_pseudo_availability(connection, username):
         print("Erreur lors de la vérification de l'existence du nom d'utilisateur:", e)
         return False
 
+#Verification de mot de passe
 def login(connection, username, password):
     try:
         cursor = connection.cursor()
@@ -48,6 +50,22 @@ def login(connection, username, password):
     except psycopg2.Error as e:
         print("Échec de la connexion:", e)
         return None
+
+#inserer nouvelle annonce
+def insert_new_announcement_with_input(connection):
+    try:
+        cursor = connection.cursor()
+        activite = input("Activité (True/False): ")
+        intitule = input("Intitulé (Voiture à louer): ")
+        nombre_signalement = 0
+        note = float(input("Note (Entre 0 et 5): "))
+        vehicule = input("Véhicule (AB-123-CD): ")
+        insert_query = "INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule) VALUES (%s, %s, %s, %s, %s);"
+        cursor.execute(insert_query, (activite, intitule, nombre_signalement, note, vehicule))
+        connection.commit()
+        print("Nouvelle annonce insérée avec succès !")
+    except psycopg2.Error as error:
+        print("Erreur lors de l'insertion de la nouvelle annonce:", error)
 
 
 try:
@@ -74,6 +92,12 @@ try:
     if (type_test != None):
         print("Vous êtes", type_test)
     
+    #test ajouter une annonce
+    print("Vous allez ajouter une annonce, veuillez renseigner les informations")    
+    if (type_test == "proprietaire"):
+        insert_new_announcement_with_input(conn)
+    else:
+        print("Vous n'êtes pas proprietaire, vous ne pouvez pas ajouter d'annonce !")
     
     
 except Exception as error:
