@@ -194,7 +194,8 @@ VALUES
     ('2024-06-01', '2024-06-15'),
     ('2024-07-01', '2024-07-15'),
     ('2024-08-01', '2024-08-15'),
-    ('2024-09-01', '2024-09-15');
+    ('2024-09-01', '2024-09-15'),
+    ('2021-01-01', '2025-12-31');
 
 INSERT INTO Est_disponible (vehicule, periode)
 VALUES 
@@ -202,7 +203,17 @@ VALUES
     ('EF-456-GH', 2),
     ('IJ-789-KL', 3),
     ('MN-012-OP', 4),
-    ('QR-345-ST', 5);
+    ('QR-345-ST', 5),
+    ('AB-123-CD', 6),
+    ('EF-456-GH', 6),
+    ('IJ-789-KL', 6),
+    ('MN-012-OP', 6),
+    ('QR-345-ST', 6),
+    ('MN-456-ZW', 6),
+    ('MN-789-YZ', 6),
+    ('BR-789-QR', 6),
+    ('BR-456-WX', 6),
+    ('UT-234-ST', 6);
 
 INSERT INTO Peut_circuler (vehicule, pays)
 VALUES 
@@ -223,7 +234,11 @@ VALUES
     ('MN-012-OP', 3),
     ('QR-345-ST', 1),
     ('QR-345-ST', 3),
-    ('QR-345-ST', 5);
+    ('QR-345-ST', 5),
+    ('AB-123-CD', 4),
+    ('AB-123-CD', 6),
+    ('AB-123-CD', 7),
+    ('AB-123-CD', 8);
 
 CREATE VIEW ContrainteEntrepriseConducteur AS
 SELECT pseudo 
