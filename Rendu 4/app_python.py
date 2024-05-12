@@ -33,14 +33,47 @@ def check_pseudo_availability(connection, username):
         print("Erreur lors de la vérification de l'existence du nom d'utilisateur:", e)
         return False
 
+def login(connection, username, password):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Utilisateur WHERE pseudo = %s AND mot_de_passe = %s", (username, password))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            print("Connexion réussie")
+            return user[2]  # Renvoyer le type d'utilisateur
+        else:
+            print("Nom d'utilisateur ou mot de passe incorrect")
+            return None
+    except psycopg2.Error as e:
+        print("Échec de la connexion:", e)
+        return None
+
+
 try:
     conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD))
-    print("Connexion réussie")
+    print("Connexion à la BDD réussie")
     
+    
+    """choix = ''
+    while (choix != 'oui' and choix != 'non') :
+        print("choix invalide, veuillez recommencer")
+        choix = str(input("Voulez vous faire une rehcerche par critères (oui/non)\n"))"""
+    
+    #test existence pseudo
     pseudo_test = "Gagnos"
     check_pseudo_availability(conn, pseudo_test)
     pseudo_test = "NewPseudo"
     check_pseudo_availability(conn, pseudo_test)
+    
+    #test pouvoir se connecter
+    pseudo_test = "Gagnos"
+    print("Login: ", pseudo_test)
+    password_test = str(input("Password: "))
+    type_test = login(conn, pseudo_test, password_test)
+    if (type_test != None):
+        print("Vous êtes", type_test)
+    
     
     
 except Exception as error:
