@@ -243,6 +243,45 @@ def insert_new_announcement_with_input(connection, pseudo):
     except psycopg2.Error as error:
         print("Erreur lors de l'insertion de la nouvelle annonce:", error)
 
+def delete_annoncement(connection, pseudo):
+    try:
+        curseur = connection.cursor()
+        # Sélectionner toutes les annonces appartenant au pseudo spécifié
+        curseur.execute("SELECT id_annonce, intitule, vehicule FROM Annonce WHERE vehicule IN (SELECT immatriculation FROM Vehicule WHERE proprietaire = %s)", (pseudo,))
+        annonces = curseur.fetchall()
+        
+        if not annonces:
+            print("Aucune annonce trouvée pour le pseudo {}.".format(pseudo))
+            return
+        
+        print("Annonces appartenant à {} :".format(pseudo))
+        for annonce in annonces:
+            print("ID : {}, Intitulé : {}".format(annonce[0], annonce[1]))
+        
+        id_annonce = str(input("Veuillez entrer l'ID de l'annonce que vous souhaitez supprimer : "))
+        
+        print(id_annonce)
+        # Vérifier si l'ID saisi est valide
+        if not any(id_annonce in annonce[0] for annonce in annonces):
+            print("ID d'annonce invalide.")
+            return
+        
+        # Vérifier si le pseudo est bien le propriétaire de l'annonce
+        annonce_proprietaire = curseur.execute("SELECT proprietaire FROM Vehicule WHERE immatriculation = %s", (annonces[0][2],)).fetchone()[0]
+        
+        if annonce_proprietaire != pseudo:
+            print("Vous n'avez pas la permission de supprimer cette annonce car vous n'êtes pas le propriétaire.")
+            return
+        
+        # Supprimer l'annonce spécifiée
+        curseur.execute("DELETE FROM Annonce WHERE id_annonce = %s", (id_annonce,))
+        connection.commit()
+        print("L'annonce avec l'ID {} a été supprimée avec succès.".format(id_annonce))
+        
+    except psycopg2.Error as erreur:
+        print("Une erreur s'est produite lors de la suppression de l'annonce :", erreur)
+
+
 def insert_new_conducteur_with_input(connection, pseudo):
     try:
         cursor = connection.cursor()
@@ -459,7 +498,6 @@ def Rerserver_Voiture(conn, locataire: str, entreprise: str) -> int:
     conn.commit()
     return 1
 
-
 def Etat_des_lieux(connection):
     cur = connection.cursor()
     id_contrat = input("Entrez l'ID du contrat de location : ")
@@ -546,6 +584,7 @@ def check_reservation_locataire(connection, id, pseudo):
     except psycopg2.Error as e:
         print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
         return False
+    
 def consulter_reservation_locataire(connection, pseudo):
     cur = connection.cursor()
     print("Vos réservations: ")
@@ -589,6 +628,7 @@ def check_reservation_proprio(connection, id, pseudo):
     except psycopg2.Error as e:
         print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
         return False
+    
 def consulter_reservation_proprio(connection, pseudo):
     cur = connection.cursor()
     print("Vos réservations: ")
@@ -631,6 +671,7 @@ def check_reservation_entrep(connection, id, pseudo):
     except psycopg2.Error as e:
         print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
         return False
+    
 def consulter_reservation_entreprise(connection, pseudo):
     cur = connection.cursor()
     print("Vos réservations: ")
@@ -660,6 +701,7 @@ def consulter_reservation_entreprise(connection, pseudo):
                 print("Vous n'avez pas accès à cette reservation!")
         except psycopg2.Error as error:
             print("Erreur lors de la suppression de la réservation! ", error)
+            
 def menu(connection):
     logged_in = False
     user_type = None
@@ -690,7 +732,7 @@ def menu(connection):
             print("1. Insérer un nouveau conducteur")
             print("2. Consulter les annonces")
             print("3. Insérer un nouveau commentaire")
-            print("4. Consulter et annuler une réservation")
+            print("4. Consulter une réservation")
             print("5. Annuler une réservation")
             print("6. Ajouter une annonce")
             print("7. Supprimer une annonce")
@@ -722,13 +764,12 @@ def menu(connection):
             elif choice == "5" :
                 pass
             elif choice == "6" :
-                pass
+                insert_new_announcement_with_input(connection, username)
             elif choice == "7":
                 if user_type != "proprietaire":
                     print("Vous n'avez pas la permission d'effectuer cette action.")
-                else:
-                    pass
-                    ##supprimer_annonce(connection)
+                else:                    
+                    delete_annoncement(connection, username)
             elif choice == "8":
                 if user_type == "proprietaire":
                     print("Vous n'avez pas la permission d'effectuer cette action.")
