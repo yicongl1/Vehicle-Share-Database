@@ -6,6 +6,24 @@ PASSWORD = "your_password"
 DATABASE = "your_database"
 
 
+
+def consulter_reservation_locataire(pseudo):
+    print("Vos réservations: ")
+    requete=f"SELECT a.id_annonce, cl.id_contrat, v.modele, cl.debut, cl.fin, p.pseudo, L.pseudo FROM Vehicule v JOIN Proprietaire p ON v.proprietaire = p.pseudo JOIN Contrat_location cl ON p.pseudo = cl.proprietaire JOIN Locataire L ON cl.locataire = l.pseudo JOIN Entreprise e ON cl.entreprise = e.pseudo JOIN Annonce a ON a.vehicule = v.immatriculation WHERE l.pseudo={pseudo}"
+    cur.execute(requete)
+    choix=str(input("Souhaitez vous annuler une réservation ? (oui|non)")).lower()
+    if choix=="oui":
+        id=int(input("Entrez le numéro de reservation que vous souhaitez annuler:"))
+        raw= cur.fetchone()  
+        erreur=1
+        for i in range(len(raw)):
+            if raw[i][0]==id:
+                id_contrat=raw[i][1]
+                erreur=0
+        if erreur==1:
+            ValueError
+        requete=f"DELETE FROM Contrat_location WHERE id_contrat = {id_contrat}"
+
 # pour la creation de user, il faut check si le pseudo est pris
 def check_pseudo_availability(connection, username):
     try:
