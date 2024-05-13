@@ -173,7 +173,7 @@ VALUES
     (TRUE, 'Gagnos', 'ma voiture', 1, 2, 'AB-123-CD'),
     (FALSE, 'Leplusfort', 'Location pas cher', 0, 5, 'EF-456-GH'),
     (TRUE, 'Xavier33', 'Mon bebe mon bolide', 0, 3, 'IJ-789-KL'),
-    (FALSE, ,'RobertDevos', 'en promo', 0, 4, 'MN-012-OP'),
+    (FALSE, 'RobertDevos', 'en promo', 0, 4, 'MN-012-OP'),
     (TRUE, 'Chargeur2000', 'la plus grande voiture de lannée', 0, 0, 'QR-345-ST'),
     (TRUE, 'Avellll', 'voiture 4 places', 1, 5, 'MN-456-ZW'),
     (FALSE, 'robot1234', 'Grand véhicule', 0, 0, 'MN-789-YZ'),
