@@ -125,7 +125,7 @@ CREATE TABLE Facture (
 	moyen_paiement VARCHAR(255) NOT NULL,
 	montant FLOAT NOT NULL,
 	contrat_location INT NOT NULL,
-	FOREIGN KEY (contrat_location) REFERENCES Contrat_location(id_contrat) ON DELETE CASCADE,
+	FOREIGN KEY (contrat_location) REFERENCES Contrat_location(id_contrat),
 	CHECK (kilometrage > 0),
 	CHECK (carburant >= 0 AND carburant <= 1),
 	CHECK (montant > 0)
