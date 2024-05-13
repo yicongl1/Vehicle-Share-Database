@@ -220,10 +220,21 @@ def check_vehicule_availability(connection, vehicule):
         nombre_signalement = 0
         note = float(input("Note (Entre 0 et 5): "))
         vehicule = input("Véhicule (AB-123-CD): ")
-        while not check_vehicule_existence(connection, vehicule, pseudo):
-            vehicule = input("Veuillez entrer un vehicule déjà existant : ")
-        while not check_vehicule_availability(connection, vehicule):
-            vehicule = input("Veuillez entrer un autre vehicule : ")
+        existence = check_vehicule_existence(connection, vehicule, pseudo)
+        availability = False
+        if existence:
+            availability  = check_vehicule_availability(connection, vehicule)        
+        while ((not existence) or (not availability)):
+            if existence:
+                vehicule = input("Veuillez entrer un autre vehicule : ")
+                availability  = check_vehicule_availability(connection, vehicule)
+            else:
+                vehicule = input("Veuillez entrer un vehicule déjà existant : ")
+                existence = check_vehicule_existence(connection, vehicule)
+        """elif not availability:
+                vehicule = input("Veuillez entrer un autre vehicule : ")
+                availability  = check_vehicule_availability(connection, vehicule)"""
+
         insert_query = "INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule) VALUES (%s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (activite, intitule, nombre_signalement, note, vehicule))
         connection.commit()
