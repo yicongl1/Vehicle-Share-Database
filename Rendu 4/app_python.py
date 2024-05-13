@@ -212,13 +212,14 @@ def check_vehicule_availability(connection, vehicule):
 
 
 # inserer nouvelle annonce
-'''def insert_new_announcement_with_input(connection, pseudo):
+def insert_new_announcement_with_input(connection, pseudo):
     try:
         cursor = connection.cursor()
         activite = input("Activité (True/False): ")
+        proprietaire = pseudo
         intitule = input("Intitulé (Voiture à louer): ")
         nombre_signalement = 0
-        note = float(input("Note (Entre 0 et 5): "))
+        note = 0
         vehicule = input("Véhicule (AB-123-CD): ")
         existence = check_vehicule_existence(connection, vehicule, pseudo)
         availability = False
@@ -240,7 +241,7 @@ def check_vehicule_availability(connection, vehicule):
         connection.commit()
         print("Nouvelle annonce insérée avec succès !")
     except psycopg2.Error as error:
-        print("Erreur lors de l'insertion de la nouvelle annonce:", error)'''
+        print("Erreur lors de l'insertion de la nouvelle annonce:", error)
 
 def insert_new_conducteur_with_input(connection, pseudo):
     try:
