@@ -325,6 +325,19 @@ def insert_new_comment_with_input(connection, user_type, username):
 
         query = "UPDATE Annonce SET note = %s WHERE vehicule = %s;"
         cursor.execute(query, (somme, vehicule,))
+
+        ##vérification du nombre de signalements
+        query = "SELECT signalement FROM Commentaire co, Contrat_location cl WHERE cl.id_contrat = co.contrat_location AND cl.vehicule = %s;"
+        row = cursor.fetchone()
+        cpt = 0
+        while row :
+            if row[0]==True :
+                cpt+=1
+
+        if cpt >= 3 :
+            query = "UPDATE Annonce SET activite = 0 WHERE vehicule = %s;"
+            cursor.execute(query, (vehicule,))
+        
         connection.commit()
         print("Nouveau commentaire inséré avec succès !")
     except psycopg2.Error as error:
