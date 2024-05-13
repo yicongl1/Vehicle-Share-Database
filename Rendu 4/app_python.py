@@ -34,6 +34,39 @@ def check_pseudo_availability(connection, username):
         print("Erreur lors de la vérification de l'existence du nom d'utilisateur:", e)
         return False
 
+#supprimer utilisateur
+def delete_user(connection, pseudo):
+   try:
+       cursor = connection.cursor()
+       pseudo = str(input("Entrez le pseudo de l’utilisateur à supprimer : "))
+       query = "SELECT * FROM Utilisateur WHERE pseudo = %s;"
+       cursor.execute(query, (pseudo,))
+       if cursor.rowcount > 0:
+           query = "DELETE FROM Utilisateur WHERE pseudo = %s;"
+           cursor.execute(query, (pseudo,))
+           print("L’utilisateur a été supprimé avec succès !")
+       else:
+           print("Aucun utilisateur n’a été trouvé avec ce pseudo.")
+       connection.commit()
+   except psycopg2.Error as error:
+       print("Erreur lors de la suppression de l’utilisateur :", error)
+
+#activer utilisateur
+def activate_user(connection, pseudo):
+   try:
+       cursor = connection.cursor()
+       query = "SELECT * FROM Utilisateur WHERE pseudo = %s;"
+       cursor.execute(query, (pseudo,))
+       if cursor.rowcount > 0:
+           query = "UPDATE Utilisateur SET actif = TRUE WHERE pseudo = %s;"
+           cursor.execute(query, (pseudo,))
+           print("L’utilisateur a été supprimé avec succès !")
+       else:
+           print("Aucun utilisateur n’a été trouvé avec ce pseudo.")
+       connection.commit()
+   except psycopg2.Error as error:
+       print("Erreur lors de l'activation de l’utilisateur :", error)
+
 #Verification de mot de passe
 def login(connection, username, password):
     try:
@@ -64,6 +97,7 @@ def insert_new_proprietaire_with_input(connection, pseudo):
         insert_query = "INSERT INTO Proprietaire (pseudo, photo, telephone, email, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (pseudo, photo, telephone, email, nom, prenom, age))
         connection.commit()
+        activate_user(connection, pseudo)
         print("Nouveau propriétaire inséré avec succès !")
     except psycopg2.Error as error:
         print("Erreur lors de l'insertion du nouveau propriétaire:", error)
@@ -83,6 +117,7 @@ def insert_new_locataire_with_input(connection, pseudo):
         insert_query = "INSERT INTO Locataire (pseudo, photo, telephone, email, permis, validite, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (pseudo, photo, telephone, email, permis, validite, nom, prenom, age))
         connection.commit()
+        activate_user(connection, pseudo)
         print("Nouveau locataire inséré avec succès !")
     except psycopg2.Error as error:
         print("Erreur lors de l'insertion du nouveau locataire:", error)
@@ -101,6 +136,7 @@ def insert_new_entreprise_with_input(connection, pseudo):
        insert_query = "INSERT INTO Entreprise (pseudo, photo, telephone, email, nom, adresse, ville, code_postal) VALUES (%s, %s, %s, %s, %s, %s, %s, %s);"
        cursor.execute(insert_query, (pseudo, photo, telephone, email, nom, adresse, ville, code_postal))
        connection.commit()
+       activate_user(connection, pseudo)
        print("Nouvelle entreprise insérée avec succès !")
    except psycopg2.Error as error:
        print("Erreur lors de l'insertion de la nouvelle entreprise:", error)
@@ -125,11 +161,11 @@ def create_user(connection):
     
     try:
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO Utilisateur (pseudo, mot_de_passe, type, actif) VALUES (%s, %s, %s, TRUE)", (pseudo, password, user_type))
+        cursor.execute("INSERT INTO Utilisateur (pseudo, mot_de_passe, type, actif) VALUES (%s, %s, %s, FALSE)", (pseudo, password, user_type))
         connection.commit()
         print("Utilisateur créé avec succès.")
         cursor.close()
-
+        
         # Appeler la fonction correspondante en fonction du type d'utilisateur
         if user_type == "proprietaire":
             insert_new_proprietaire_with_input(connection, pseudo)
@@ -137,6 +173,7 @@ def create_user(connection):
             insert_new_locataire_with_input(connection, pseudo)
         elif user_type == "entreprise":
             insert_new_entreprise_with_input(connection, pseudo)
+
     except psycopg2.Error as e:
         print("Erreur lors de la création de l'utilisateur :", e)
 
@@ -191,55 +228,13 @@ try:
     print("Vous allez vous inscrire, veuillez renseigner les informations") 
     create_user(conn)
     
+    #delete_old_user(connection)
+    
+    conn.close()
+    print("Déconnexion de la BDD réussie")
     
 except Exception as error:
     print("Une exception s'est produite : ", error)
     print("Type D'Exception' : ", type(error))
-    
-    #écriture
-    """cur = conn.cursor()
-    cur.execute("")
-    conn.commit()"""
-    
-    #lecture
-    """cur.execute("")
-    #cur.fetchone()
-    cur.fetchall()"""
-    
-    #A faire sur Postgre : Création BDD et enregistrement fichier csv
-    """cur.execute("DROP TABLE IF EXISTS dpt2;")
-    cur.execute("CREATE TABLE dpt2(num INTEGER PRIMARY KEY, nom VARCHAR NOT NULL UNIQUE, population INTEGER  NOT NULL CHECK(population>0));")
-    conn.commit()
-    print("Création de table réussie")"""
-    
-    """cur.execute("\copy dpt2 (num, nom, population) FROM '/home/users/your_user/Documents/fichier.csv' WITH CSV HEADER DELIMITER ';';")     
-    conn.commit()
-    print("Chargement du fichier csv réussi")"""
-    
-    """"print(cur.fetchall())"""
-    
-    """ cur = conn.cursor()
-    
-    #chercher le login d'un utilisateur
-    cur.execute("SELECT * FROM dpt2;")
-                                                         
-    #lecture ligne et affichage
-    print("[N°] Nom (Population)")
-    raw = cur.fetchone()
-    while raw:
-        print ("[0%i] %s (%i)" % (raw[0], raw[1], raw[2]))
-        #print ("[",raw[0],"] ",raw[1]," (",raw[2],")")
-        raw = cur.fetchone()
-    #print("Visualisation de table réussie")
-    
-    #chercher les min-max population dans bdd
-    cur.execute("SELECT MIN(population), MAX(population) FROM dpt2;")    
-    raw = cur.fetchone()
-    print ("Département le plus peuplé : %i\nDépartement le moins peuplé : %i" % (raw[1], raw[0]))
-    
-    #insérer new dpts dans bdd
-    #sql = "INSERT INTO dpt2 VALUES ();"
-    #cur.execute(sql)
-    
-    conn.close()"""
+
     
