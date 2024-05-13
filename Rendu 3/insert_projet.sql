@@ -6,33 +6,33 @@
 
 -- ANNONCE  CHECK (nombre_signalement >= 3  AND NOT activite)
 
-INSERT INTO Utilisateur (pseudo, mot_de_passe, type)
+INSERT INTO Utilisateur (pseudo, mot_de_passe, type, actif)
 VALUES 
-    ('Gagnos', 'Gagnos', 'proprietaire', 1),
-    ('Leplusfort', 'Leplusfort', 'proprietaire', 1),
-    ('Xavier33', 'Xavier33', 'proprietaire', 1),
-    ('RobertDevos', 'RobertDevos', 'proprietaire', 1),
-    ('Chargeur2000', 'Chargeur2000', 'proprietaire', 1),
-    ('Avellll', 'Avellll', 'proprietaire', 1),
-    ('robot1234', 'robot1234', 'proprietaire', 1),
-    ('millemille', 'millemille', 'proprietaire', 1),
-    ('octogone8', 'octogone8', 'proprietaire', 1),
-    ('davvveee', 'davvveee', 'proprietaire', 1),
-    ('berttt', 'berttt', 'locataire', 1),
-    ('gregou', 'gregou', 'locataire', 1),
-    ('davidismoi', 'davidismoi', 'locataire', 1),
-    ('marchariere', 'marchariere', 'locataire', 1),
-    ('clavierks', 'clavierks', 'locataire', 1),
-    ('ordi3000', 'ordi3000', 'locataire', 1),
-    ('Raphaz', 'Raphaz', 'locataire', 1),
-    ('mickey', 'mickey', 'locataire', 1),
-    ('touche45', 'touche45', 'locataire', 1),
-    ('fania', 'fania', 'locataire', 1),
-    ('Apple', 'Apple', 'entreprise', 1),
-    ('Amazon', 'Amazon', 'entreprise', 1),
-    ('Google', 'Google', 'entreprise', 1),
-    ('Meta Platforms', 'Meta Platforms', 'entreprise', 1),
-    ('Tesla', 'Tesla', 'entreprise', 1);
+    ('Gagnos', 'Gagnos', 'proprietaire', TRUE),
+    ('Leplusfort', 'Leplusfort', 'proprietaire', TRUE),
+    ('Xavier33', 'Xavier33', 'proprietaire', TRUE),
+    ('RobertDevos', 'RobertDevos', 'proprietaire', TRUE),
+    ('Chargeur2000', 'Chargeur2000', 'proprietaire', TRUE),
+    ('Avellll', 'Avellll', 'proprietaire', TRUE),
+    ('robot1234', 'robot1234', 'proprietaire', TRUE),
+    ('millemille', 'millemille', 'proprietaire', TRUE),
+    ('octogone8', 'octogone8', 'proprietaire', TRUE),
+    ('davvveee', 'davvveee', 'proprietaire', TRUE),
+    ('berttt', 'berttt', 'locataire', TRUE),
+    ('gregou', 'gregou', 'locataire', TRUE),
+    ('davidismoi', 'davidismoi', 'locataire', TRUE),
+    ('marchariere', 'marchariere', 'locataire', TRUE),
+    ('clavierks', 'clavierks', 'locataire', TRUE),
+    ('ordi3000', 'ordi3000', 'locataire', TRUE),
+    ('Raphaz', 'Raphaz', 'locataire', TRUE),
+    ('mickey', 'mickey', 'locataire', TRUE),
+    ('touche45', 'touche45', 'locataire', TRUE),
+    ('fania', 'fania', 'locataire', TRUE),
+    ('Apple', 'Apple', 'entreprise', TRUE),
+    ('Amazon', 'Amazon', 'entreprise', TRUE),
+    ('Google', 'Google', 'entreprise', TRUE),
+    ('Meta Platforms', 'Meta Platforms', 'entreprise', TRUE),
+    ('Tesla', 'Tesla', 'entreprise', TRUE);
 
 INSERT INTO Proprietaire (pseudo, photo, telephone, email, nom, prenom, age)
 VALUES 
