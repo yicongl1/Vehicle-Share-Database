@@ -168,19 +168,18 @@ VALUES
     ('Assurance Protection Totale', 'Tous Risques', 'UT-234-ST');
 
 
-INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule)
+INSERT INTO Annonce (activite, proprietaire, intitule, nombre_signalement, note, vehicule)
 VALUES 
-    (TRUE, 'ma voiture', 1, 2, 'AB-123-CD'),
-    (FALSE, 'Location pas cher', 0, 5, 'EF-456-GH'),
-    (TRUE, 'Mon bebe mon bolide', 0, 3, 'IJ-789-KL'),
-    (FALSE, 'en promo', 0, 4, 'MN-012-OP'),
-    (TRUE, 'la plus grande voiture de lannée', 0, 0, 'QR-345-ST'),
-    (TRUE, 'voiture 4 places', 1, 5, 'MN-456-ZW'),
-    (FALSE, 'Grand véhicule', 0, 0, 'MN-789-YZ'),
-    (TRUE, 'Décapotable 4 places', 0, 0, 'BR-789-QR'),
-    (FALSE, 'SUV', 0, 0, 'BR-456-WX'),
-    (TRUE, 'Bus', 0, 0, 'UT-234-ST');
-
+    (TRUE, 'Gagnos', 'ma voiture', 1, 2, 'AB-123-CD'),
+    (FALSE, 'Leplusfort', 'Location pas cher', 0, 5, 'EF-456-GH'),
+    (TRUE, 'Xavier33', 'Mon bebe mon bolide', 0, 3, 'IJ-789-KL'),
+    (FALSE, ,'RobertDevos', 'en promo', 0, 4, 'MN-012-OP'),
+    (TRUE, 'Chargeur2000', 'la plus grande voiture de lannée', 0, 0, 'QR-345-ST'),
+    (TRUE, 'Avellll', 'voiture 4 places', 1, 5, 'MN-456-ZW'),
+    (FALSE, 'robot1234', 'Grand véhicule', 0, 0, 'MN-789-YZ'),
+    (TRUE, 'millemille', 'Décapotable 4 places', 0, 0, 'BR-789-QR'),
+    (FALSE, 'octogone8', 'SUV', 0, 0, 'BR-456-WX'),
+    (TRUE, 'davvveee', 'Bus', 0, 0, 'UT-234-ST');
 
 INSERT INTO Option (intitule)
 VALUES 

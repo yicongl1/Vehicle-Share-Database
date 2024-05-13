@@ -92,7 +92,6 @@ CREATE TABLE Contrat_location (
 	vehicule VARCHAR(255),
 	locataire VARCHAR(255),
 	entreprise VARCHAR(255),
-	FOREIGN KEY (proprietaire) REFERENCES Proprietaire(pseudo),
 	FOREIGN KEY (vehicule) REFERENCES Vehicule(immatriculation),
 	FOREIGN KEY (locataire) REFERENCES Locataire(pseudo),
 	FOREIGN KEY (entreprise) REFERENCES Entreprise(pseudo),
@@ -155,11 +154,13 @@ CREATE TABLE Contrat_assurance (
 
 CREATE TABLE Annonce (
 	id_annonce SERIAL PRIMARY KEY,
+	proprietaire VARCHAR(255) NOT NULL,
 	activite BOOLEAN NOT NULL,
 	intitule VARCHAR(255) NOT NULL,
 	nombre_signalement INT CHECK (nombre_signalement >= 0) NOT NULL,
 	note FLOAT CHECK (note >= 0 AND note <= 5) NOT NULL,
 	vehicule VARCHAR(255) NOT NULL,
+	FOREIGN KEY (proprietaire) REFERENCES Proprietaire(pseudo),
 	FOREIGN KEY (vehicule) REFERENCES Vehicule(immatriculation),
 	CHECK (NOT(nombre_signalement >= 3 AND activite))
 );
