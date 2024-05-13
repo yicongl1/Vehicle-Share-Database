@@ -125,7 +125,7 @@ def create_user(connection):
     
     try:
         cursor = connection.cursor()
-        cursor.execute("INSERT INTO Utilisateur (pseudo, mot_de_passe, type) VALUES (%s, %s, %s)", (pseudo, password, user_type))
+        cursor.execute("INSERT INTO Utilisateur (pseudo, mot_de_passe, type, actif) VALUES (%s, %s, %s, TRUE)", (pseudo, password, user_type))
         connection.commit()
         print("Utilisateur créé avec succès.")
         cursor.close()
