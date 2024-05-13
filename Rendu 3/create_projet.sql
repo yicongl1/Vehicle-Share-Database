@@ -10,6 +10,7 @@ CREATE TABLE Utilisateur (
 	pseudo VARCHAR(255) PRIMARY KEY,
 	mot_de_passe VARCHAR(255) NOT NULL,
 	type VARCHAR(255) NOT NULL,
+	actif BOOLEAN,
 	CHECK (type='proprietaire' OR type='locataire' OR type='entreprise')
 );
 
