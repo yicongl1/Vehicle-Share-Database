@@ -60,7 +60,7 @@ def insert_new_proprietaire_with_input(connection, pseudo):
         email = input("Email: ")
         nom = input("Nom: ")
         prenom = input("Prénom: ")
-        age = int(input(" ge: "))
+        age = int(input("Age: "))
         insert_query = "INSERT INTO Proprietaire (pseudo, photo, telephone, email, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (pseudo, photo, telephone, email, nom, prenom, age))
         connection.commit()
@@ -79,7 +79,7 @@ def insert_new_locataire_with_input(connection, pseudo):
         validite = input("Validité: ")
         nom = input("Nom: ")
         prenom = input("Prénom: ")
-        age = int(input(" ge: "))
+        age = int(input("Age: "))
         insert_query = "INSERT INTO Locataire (pseudo, photo, telephone, email, permis, validite, nom, prenom, age) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (pseudo, photo, telephone, email, permis, validite, nom, prenom, age))
         connection.commit()
