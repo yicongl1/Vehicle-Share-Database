@@ -6,24 +6,6 @@ PASSWORD = "your_password"
 DATABASE = "your_database"
 
 
-
-def consulter_reservation_locataire(pseudo):
-    print("Vos réservations: ")
-    requete=f"SELECT a.id_annonce, cl.id_contrat, v.modele, cl.debut, cl.fin, p.pseudo, L.pseudo FROM Vehicule v JOIN Proprietaire p ON v.proprietaire = p.pseudo JOIN Contrat_location cl ON p.pseudo = cl.proprietaire JOIN Locataire L ON cl.locataire = l.pseudo JOIN Entreprise e ON cl.entreprise = e.pseudo JOIN Annonce a ON a.vehicule = v.immatriculation WHERE l.pseudo={pseudo}"
-    cur.execute(requete)
-    choix=str(input("Souhaitez vous annuler une réservation ? (oui|non)")).lower()
-    if choix=="oui":
-        id=int(input("Entrez le numéro de reservation que vous souhaitez annuler:"))
-        raw= cur.fetchone()  
-        erreur=1
-        for i in range(len(raw)):
-            if raw[i][0]==id:
-                id_contrat=raw[i][1]
-                erreur=0
-        if erreur==1:
-            ValueError
-        requete=f"DELETE FROM Contrat_location WHERE id_contrat = {id_contrat}"
-
 # pour la creation de user, il faut check si le pseudo est pris
 def check_pseudo_availability(connection, username):
     try:
@@ -535,7 +517,148 @@ def Etat_des_lieux(connection):
     except psycopg2.Error as err:
         print(f"Erreur lors de la création de l'état des lieux : {err}")
         connection.rollback()
+        
+def check_facture(connection, id):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Facture WHERE contrat_location  = %s", (id,))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            return False
+        else:
+            return True
+    except psycopg2.Error as e:
+        print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
+        return False
+    
+def check_reservation_locataire(connection, id, pseudo):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Contrat_location WHERE id_contrat  = %s AND locataire=%s", (id,pseudo,))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            return False
+        else:
+            return True
+    except psycopg2.Error as e:
+        print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
+        return False
+def consulter_reservation_locataire(connection, pseudo):
+    cur = connection.cursor()
+    print("Vos réservations: ")
+    requete="SELECT * FROM Contrat_location WHERE locataire=%s"
+    cur.execute(requete, (pseudo,))
+    row = cur.fetchone()
+    while row :
+        print(f"annonce {row[0]} franchise: {row[1]} seuil : {row[2]} debut : {row[3]} fin : {row[4]}")
+        row = cur.fetchone()
+    choix=str(input("Souhaitez vous annuler une réservation ? (oui|non) ")).lower()
+    if choix=="oui":
+        try:
+            id=int(input("Entrez le numéro de reservation que vous souhaitez annuler:"))
+            if not check_reservation_locataire(connection, id, pseudo):
+                if not check_facture(connection, id):
+                    requete="DELETE FROM Facture WHERE contrat_location = %s"
+                    cur.execute(requete, (id,))
+                requete="DELETE FROM Commentaire WHERE contrat_location = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Etat_des_lieux WHERE contrat = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Contrat_location WHERE id_contrat = %s"
+                cur.execute(requete, (id,))
+                
+                print("La reservation a bien été annulée !! ")
+            else:
+                print("Vous n'avez pas accès à cette reservation!")
+        except psycopg2.Error as error:
+            print("Erreur lors de la suppression de la réservation! ", error)
 
+def check_reservation_proprio(connection, id, pseudo):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Contrat_location WHERE id_contrat  = %s AND proprietaire=%s", (id,pseudo,))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            return False
+        else:
+            return True
+    except psycopg2.Error as e:
+        print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
+        return False
+def consulter_reservation_proprio(connection, pseudo):
+    cur = connection.cursor()
+    print("Vos réservations: ")
+    requete="SELECT * FROM Contrat_location WHERE proprietaire=%s"
+    cur.execute(requete, (pseudo,))
+    row = cur.fetchone()
+    while row :
+        print(f"annonce {row[0]} franchise: {row[1]} seuil : {row[2]} debut : {row[3]} fin : {row[4]}")
+        row = cur.fetchone()
+    choix=str(input("Souhaitez vous annuler une réservation ? (oui|non) ")).lower()
+    if choix=="oui":
+        try:
+            id=int(input("Entrez le numéro de reservation que vous souhaitez annuler:"))
+            if not check_reservation_proprio(connection, id, pseudo):
+                if not check_facture(connection, id):
+                    requete="DELETE FROM Facture WHERE contrat_location = %s"
+                    cur.execute(requete, (id,))
+                requete="DELETE FROM Commentaire WHERE contrat_location = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Etat_des_lieux WHERE contrat = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Contrat_location WHERE id_contrat = %s"
+                cur.execute(requete, (id,))
+                print("La reservation a bien été annulée !! ")
+            else:
+                print("Vous n'avez pas accès à cette reservation!")
+        except psycopg2.Error as error:
+            print("Erreur lors de la suppression de la réservation! ", error)
+        
+def check_reservation_entrep(connection, id, pseudo):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM Contrat_location WHERE id_contrat  = %s AND entreprise=%s", (id,pseudo,))
+        user = cursor.fetchone()
+        cursor.close()
+        if user:
+            return False
+        else:
+            return True
+    except psycopg2.Error as e:
+        print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
+        return False
+def consulter_reservation_entreprise(connection, pseudo):
+    cur = connection.cursor()
+    print("Vos réservations: ")
+    requete="SELECT * FROM Contrat_location WHERE entreprise=%s"
+    cur.execute(requete, (pseudo,))
+    row = cur.fetchone()
+    while row :
+        print(f"annonce {row[0]} franchise: {row[1]} seuil : {row[2]} debut : {row[3]} fin : {row[4]}")
+        row = cur.fetchone()
+    choix=str(input("Souhaitez vous annuler une réservation ? (oui|non) ")).lower()
+    if choix=="oui":
+        try:
+            id=int(input("Entrez le numéro de reservation que vous souhaitez annuler:"))
+            if not check_reservation_entrep(connection, id, pseudo):
+                if not check_facture(connection, id):
+                    requete="DELETE FROM Facture WHERE contrat_location = %s"
+                    cur.execute(requete, (id,))
+                requete="DELETE FROM Commentaire WHERE contrat_location = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Etat_des_lieux WHERE contrat = %s"
+                cur.execute(requete, (id,))
+                requete="DELETE FROM Contrat_location WHERE id_contrat = %s"
+                cur.execute(requete, (id,))
+                
+                print("La reservation a bien été annulée !! ")
+            else:
+                print("Vous n'avez pas accès à cette reservation!")
+        except psycopg2.Error as error:
+            print("Erreur lors de la suppression de la réservation! ", error)
 def menu(connection):
     logged_in = False
     user_type = None
@@ -551,7 +674,6 @@ def menu(connection):
             if choice == "0":
                 username = input("Nom d'utilisateur : ")
                 password = input("Mot de passe : ")
-                print("iciiii")
                 logged_in, user_type = login(connection, username, password)
                 print(user_type)
                 print(logged_in)
@@ -588,14 +710,12 @@ def menu(connection):
                 insert_new_comment_with_input(connection, user_type, username)
             elif choice == "4":
                 if user_type == "locataire":
-                    pass
-                    ##Consulter_reservation(username)
+                    consulter_reservation_locataire(connection, username)
                 elif user_type == "proprietaire":
-                    pass
-                    ##Consulter_reservation(username)
+                    consulter_reservation_proprio(connection, username)
                 elif user_type == "entreprise":
-                    pass
-                    ##Consulter_reservation(username)
+                    consulter_reservation_entreprise(connection, username)
+
                 else:
                     print("Type d'utilisateur non reconnu.")
             elif choice == "5" :
