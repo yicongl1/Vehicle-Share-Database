@@ -177,6 +177,40 @@ def create_user(connection):
     except psycopg2.Error as e:
         print("Erreur lors de la création de l'utilisateur :", e)
 
+#vérifier si le véhicule existe
+def check_vehicule_existence(connection, vehicule):
+   try:
+       cursor = connection.cursor()
+       cursor.execute("SELECT * FROM Vehicule WHERE immatriculation = %s", (vehicule,))
+       user = cursor.fetchone()
+       cursor.close()
+       if user:
+           print("La voiture est enregistrée dans la base de données")
+           return True
+       else:
+           print("La voiture n'est pas enregistrée dans la base de données")
+           return False
+   except psycopg2.Error as e:
+       print("Erreur lors de la vérification de l'enregistrement du véhicule", e)
+       return False
+
+#vérifier si un véhicule possède déjà une annonce 
+def check_vehicule_availability(connection, vehicule):
+   try:
+       cursor = connection.cursor()
+       cursor.execute("SELECT * FROM Annonce WHERE vehicule  = %s", (vehicule,))
+       user = cursor.fetchone()
+       cursor.close()
+       if user:
+           print("La voiture possède une annonce")
+           return False
+       else:
+           print("La voiture ne possède pas d'annonces")
+           return True
+   except psycopg2.Error as e:
+       print("Erreur lors de la vérification de l'existence du véhicule dans les annonces", e)
+       return False
+
 #inserer nouvelle annonce
 def insert_new_announcement_with_input(connection):
     try:
@@ -186,6 +220,10 @@ def insert_new_announcement_with_input(connection):
         nombre_signalement = 0
         note = float(input("Note (Entre 0 et 5): "))
         vehicule = input("Véhicule (AB-123-CD): ")
+        while not check_vehicule_existence(connection, vehicule):             
+            vehicule = input("Veuillez entrer un vehicule déjà existant : ")
+        while not check_vehicule_availability(connection, vehicule):
+            vehicule = input("Veuillez entrer un autre vehicule : ")
         insert_query = "INSERT INTO Annonce (activite, intitule, nombre_signalement, note, vehicule) VALUES (%s, %s, %s, %s, %s);"
         cursor.execute(insert_query, (activite, intitule, nombre_signalement, note, vehicule))
         connection.commit()
@@ -203,7 +241,7 @@ try:
         print("choix invalide, veuillez recommencer")
         choix = str(input("Voulez vous faire une rehcerche par critères (oui/non)\n"))"""
     
-    """#test existence pseudo
+    #test existence pseudo
     pseudo_test = "Gagnos"
     check_pseudo_availability(conn, pseudo_test)
     pseudo_test = "NewPseudo"
@@ -222,11 +260,11 @@ try:
     if (type_test == "proprietaire"):
         insert_new_announcement_with_input(conn)
     else:
-        print("Vous n'êtes pas proprietaire, vous ne pouvez pas ajouter d'annonce !")"""
+        print("Vous n'êtes pas proprietaire, vous ne pouvez pas ajouter d'annonce !")
         
-    #test ajouter un utilisateur
+    """#test ajouter un utilisateur
     print("Vous allez vous inscrire, veuillez renseigner les informations") 
-    create_user(conn)
+    create_user(conn)"""
     
     #delete_old_user(connection)
     
