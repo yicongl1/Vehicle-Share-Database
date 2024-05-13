@@ -12,10 +12,10 @@ This is a script file.
 
 import psycopg2
 
-HOST = "localhost"
-USER = "your_user"
-PASSWORD = ""
-DATABASE = "your_database"
+HOST = 'localhost'
+USER = 'your_user'
+PASSWORD = 'your_password'
+DATABASE = 'your_database'
 
 #pour la creation de user, il faut check si le pseudo est pris
 def check_pseudo_availability(connection, username):
@@ -231,6 +231,33 @@ def insert_new_announcement_with_input(connection):
     except psycopg2.Error as error:
         print("Erreur lors de l'insertion de la nouvelle annonce:", error)
 
+def insert_new_conducteur_with_input(connection, pseudo):
+    try:
+        cursor = connection.cursor()
+        cursor.execute("SELECT MAX(id_conducteur) FROM Conducteur;")
+        max_id = cursor.fetchone()[0]
+        if max_id is None:
+            max_id = 0
+        id_conducteur = max_id + 1
+        
+        entreprise  = pseudo
+        nom = input("Nom: ")
+        prenom = input("Prénom: ")
+        age = int(input("age: "))
+        photo = input("Photo: ")
+        pseudo = input("Pseudo: ")
+        telephone = input("Téléphone: ")
+        email = input("Email: ")
+        permis = input("Permis: ")
+        validite = input("Validité: ")
+        insert_query = "INSERT INTO Conducteur (id_conducteur, entreprise, nom, prenom, age, photo, pseudo, telephone, email, permis, validite) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);"
+        cursor.execute(insert_query, (id_conducteur, entreprise, nom, prenom, age, photo, pseudo, telephone, email, permis, validite))
+        connection.commit()
+        print("Nouveau conducteur inséré avec succès !")
+    except psycopg2.Error as error:
+        print("Erreur lors de l'insertion du nouveau conducteur:", error)
+
+
 try:
     conn = psycopg2.connect("host=%s dbname=%s user=%s password=%s" % (HOST, DATABASE, USER, PASSWORD))
     print("Connexion à la BDD réussie")
@@ -240,6 +267,8 @@ try:
     while (choix != 'oui' and choix != 'non') :
         print("choix invalide, veuillez recommencer")
         choix = str(input("Voulez vous faire une rehcerche par critères (oui/non)\n"))"""
+        
+    '''
     
     #test existence pseudo
     pseudo_test = "Gagnos"
@@ -265,6 +294,8 @@ try:
     """#test ajouter un utilisateur
     print("Vous allez vous inscrire, veuillez renseigner les informations") 
     create_user(conn)"""
+    '''
+    insert_new_conducteur_with_input(conn, "Tesla")
     
     #delete_old_user(connection)
     
