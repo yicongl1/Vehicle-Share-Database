@@ -91,7 +91,7 @@ VALUES
     ('BR-456-WX', 'Break', 'Peugeot', '508 SW', 'Gris', 'Diesel', 2020, 18000, 0.8, 'Break élégant et confortable avec un design moderne', 'octogone8', '{"id_assurance": 5, "nom_assurance": "Assurance Protection Totale",  "type": "Tous risques"}'),
     ('UT-234-ST', 'Utilitaire', 'Ford', 'Transit', 'Blanc', 'Diesel', 2020, 25000, 0.5, 'Utilitaire fiable et robuste, idéal pour les professionnels', 'davvveee', '{"id_assurance": 2, "nom_assurance": "Assurance Zéro Tracas",  "type": "Responsabilité civile"}');
 
-INSERT INTO Contrat_location (id_contrat, option_franchise, seuil_kilometrage, debut, fin, proprietaire, vehicule, locataire, entreprise, commentaires, factures) VALUES
+INSERT INTO Contrat_location (id_contrat, option_franchise, seuil_kilometrage, debut, fin, proprietaire, vehicule, locataire, entreprise, commentaire, facture) VALUES
 (1,'sans réduction', 1000, '2024-05-01', '2024-05-15', 'Gagnos', 'AB-123-CD', 'berttt', NULL, NULL, NULL),
 (2,'franchise réduite', 1500, '2024-02-10', '2024-02-25', 'Leplusfort', 'EF-456-GH', 'gregou', NULL, '{"note": 5, "signaler": false, "description": "Service impeccable, véhicule en excellent état"}', '{"date": "2024-02-25", "kilometrage": 900, "carburant": 0.5, "moyen_paiement": "espèces", "montant": 420.75}'),
 (3,'zéro franchise', 1200, '2023-07-15', '2023-08-01', 'Xavier33', 'IJ-789-KL', 'davidismoi', NULL, '{"note": 3, "signaler": false, "description": "Véhicule moyen, problème de démarrage à froid"}', '{"date": "2024-08-02", "kilometrage": 400, "carburant": 0.8, "moyen_paiement": "chèque", "montant": 280.00}'),
