@@ -1,7 +1,7 @@
 --DROP
 DROP VIEW IF EXISTS ContrainteOptionPossede, ContrainteVehiculeProprietaire, ContrainteContrat_locationEtat_des_lieux, ContrainteEntrepriseContrat_location, ContrainteLocataireContrat_location, ContrainteProprietaireContrat_location, ContrainteEntrepriseConducteur;
 
-DROP TABLE IF EXISTS Possede, Peut_circuler, Est_disponible, Annonce, Pays, Option, Periode, Commentaire, Facture, Etat_des_lieux, Contrat_assurance, Contrat_location, Vehicule, Conducteur, Entreprise, Locataire, Proprietaire, Utilisateur;
+DROP TABLE IF EXISTS Possede, Peut_circuler, Est_disponible, Annonce, Pays, Option, Periode, Etat_des_lieux, Contrat_location, Vehicule, Conducteur, Entreprise, Locataire, Proprietaire, Utilisateur;
 
 
 --CREATE
@@ -21,7 +21,7 @@ CREATE TABLE Proprietaire (
     email VARCHAR(255) NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
-    age INT CHECK (age >= 18) NOT NULL,    
+    age INT CHECK (age >= 18) NOT NULL,
     FOREIGN KEY (pseudo) REFERENCES Utilisateur(pseudo)
 );
 
@@ -34,7 +34,7 @@ CREATE TABLE Locataire (
     validite DATE CHECK (validite > NOW()) NOT NULL,
     nom VARCHAR(255) NOT NULL,
     prenom VARCHAR(255) NOT NULL,
-    age INT CHECK (age >= 18) NOT NULL,     
+    age INT CHECK (age >= 18) NOT NULL,
     FOREIGN KEY (pseudo) REFERENCES Utilisateur(pseudo)
 );
 
@@ -92,8 +92,8 @@ CREATE TABLE Contrat_location (
     vehicule VARCHAR(255),
     locataire VARCHAR(255),
     entreprise VARCHAR(255),
-    commentaires JSON,
-    factures JSON,
+    commentaire JSON,
+    facture JSON,
     FOREIGN KEY (vehicule) REFERENCES Vehicule(immatriculation),
     FOREIGN KEY (locataire) REFERENCES Locataire(pseudo),
     FOREIGN KEY (entreprise) REFERENCES Entreprise(pseudo),
