@@ -1,0 +1,6 @@
+{
+    "nom" : "Dupont",
+    "prenom" : "Marie",
+    "age": 25,
+    "adresse": ["marie.dupont@example.com", "contact@example.org"]
+}
