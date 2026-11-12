@@ -1,0 +1,3 @@
+# Faire apparaître le SQL dans les statistiques de langage de GitHub
+# （GitHub Linguist 默认将 .sql 归类为 data 类型，不计入语言统计）
+*.sql linguist-detectable=true
